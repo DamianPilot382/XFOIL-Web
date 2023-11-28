@@ -12,6 +12,7 @@
     "url": "git+https://github.com/DamianPilot382/Web-XFOIL.git"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.6.2"
   },
   "keywords": [],
