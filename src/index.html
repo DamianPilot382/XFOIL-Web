@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Web XFOIL</title>
+  </head>
+  <body>
+    <p>Hello, World!</p>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+    <div id="tester" style="width:600px;height:250px;"></div>
+
+    <script>
+	TESTER = document.getElementById('tester');
+	Plotly.newPlot( TESTER, [{
+	x: [1, 2, 3, 4, 5],
+	y: [1, 2, 4, 8, 16] }], {
+	margin: { t: 0 } } );
+</script>
+    
+  </body>
+</html>
