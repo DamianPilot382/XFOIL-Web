@@ -42,10 +42,11 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
         dir1 = '/Airfoil_DAT_Selig/'                                            # Initial directory of the dialog box GUI
         root.withdraw()                                                         # Needed for closing the Tk window later
         root.update()                                                           # Needed for closing the Tk window later
-        root.fileName = askopenfilename(filetypes = ftypes,                     # User input of airfoil file to load
-                                        initialdir = dir1,
-                                        title = ttl)
-        root.destroy()                                                          # Destroy the Tk window
+        root.fileName = 'n0012.dat'
+        # root.fileName = askopenfilename(filetypes = ftypes,                     # User input of airfoil file to load
+        #                                 initialdir = dir1,
+        #                                 title = ttl)
+        # root.destroy()                                                          # Destroy the Tk window
         
         head, tail = ntpath.split(root.fileName)                                # https://stackoverflow.com/questions/8384737/extract-file-name-from-path-no-matter-what-the-os-path-format
         airfoilName = tail[0:len(tail)-4]                                       # Retain only airfoil name, not extension
@@ -58,12 +59,12 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
     saveFlnmPol = 'Save_' + airfoilName + '_Pol.txt'                            # Airfoil polar save-to file
     
     # Delete files if they exist
-    if os.path.exists(saveFlnm):                                                # If the airofil coordinates file exists
-        os.remove(saveFlnm)                                                     # Delete the file
-    if os.path.exists(saveFlnmCp):                                              # If the airfoil Cp file exists
-        os.remove(saveFlnmCp)                                                   # Delete the file
-    if os.path.exists(saveFlnmPol):                                             # If the airfoil polar file exists
-        os.remove(saveFlnmPol)                                                  # Delete the file
+    # if os.path.exists(saveFlnm):                                                # If the airofil coordinates file exists
+    #     os.remove(saveFlnm)                                                     # Delete the file
+    # if os.path.exists(saveFlnmCp):                                              # If the airfoil Cp file exists
+    #     os.remove(saveFlnmCp)                                                   # Delete the file
+    # if os.path.exists(saveFlnmPol):                                             # If the airfoil polar file exists
+    #     os.remove(saveFlnmPol)                                                  # Delete the file
            
     # Create the airfoil
     fid = open('xfoil_input.inp',"w")                                           # Open a file for writing the XFoil commands to
@@ -99,11 +100,11 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
     fid.close()                                                                 # Close the input file
     
     # Run the XFoil calling command
-    os.system("xfoil.exe < xfoil_input.inp")                                    # Run XFoil with the input file just created
+    # os.system("xfoil.exe < xfoil_input.inp")                                    # Run XFoil with the input file just created
     
     # Delete file after running
-    if os.path.exists('xfoil_input.inp'):                                       # If the input file exists
-        os.remove('xfoil_input.inp')                                            # Delete the file since we don't need it anymore
+    # if os.path.exists('xfoil_input.inp'):                                       # If the input file exists
+    #     os.remove('xfoil_input.inp')                                            # Delete the file since we don't need it anymore
     
     # %% READ CP DATA
     
@@ -116,8 +117,8 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
     xFoilResults[3] = dataBufferCp[:,2]                                         # Cp data
     
     # Delete file after loading
-    if os.path.exists(saveFlnmCp):                                              # If filename exists
-        os.remove(saveFlnmCp)                                                   # Delete the file
+    # if os.path.exists(saveFlnmCp):                                              # If filename exists
+    #     os.remove(saveFlnmCp)                                                   # Delete the file
     
     # %% READ AIRFOIL COORDINATES
     
@@ -129,8 +130,8 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
     xFoilResults[5] = dataBuffer[:,1]                                           # Boundary point Y-coordinate
 
     # Delete file after loading
-    if os.path.exists(saveFlnm):                                                # If filename exists
-        os.remove(saveFlnm)                                                     # Delete the file
+    # if os.path.exists(saveFlnm):                                                # If filename exists
+    #     os.remove(saveFlnm)                                                     # Delete the file
     
     # %% READ POLAR DATA
     
@@ -143,16 +144,7 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
     xFoilResults[8] = dataBufferPol[4]                                          # Moment coefficient
 
     # Delete file after loading
-    if os.path.exists(saveFlnmPol):                                             # If filename exists
-        os.remove(saveFlnmPol)                                                  # Delete the file
+    # if os.path.exists(saveFlnmPol):                                             # If filename exists
+    #     os.remove(saveFlnmPol)                                                  # Delete the file
     
     return xFoilResults                                                         # Return the important information from this function
-
-
-
-
-
-
-
-    
-

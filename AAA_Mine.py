@@ -1,56 +1,5 @@
 # SOURCE/VORTEX PANEL METHOD - SINGLE AIRFOIL
-# Written by: JoshTheEngineer
-# YouTube   : www.youtube.com/joshtheengineer
-# Website   : www.joshtheengineer.com
-# GitHub    : www.github.com/jte0419
-# Started   : 11/15/19
-# Updated   : 11/15/19 - Copied code from MATLAB SPVP_Airfoil.m
-#                      - Works as expected
-#             05/02/20 - Updating comments
-# Notes     : This code is not optimized, but is instead written in such a way
-#             that it is easy to follow along with my YouTube video derivations
-# 
-# Functions Needed:
-# - XFOIL.py
-# - COMPUTE_IJ_SPM.py
-# - COMPUTE_KL_VPM.py
-# - STREAMLINE_SPM.py
-# - STREAMLINE_VPM.py
-# - COMPUTE_CIRCULATION.py
-# 
-# Programs Needed:
-# - xfoil.exe
-# 
-# Folder Needed:
-# - Airfoil_DAT_Selig: folder containing all Selig-format airfoils
-# 
-# References
-# - [1] : Panel Method Geometry
-#           Link: https://www.youtube.com/watch?v=kIqxbd937PI
-# - [2] : Normal Geometric Integral SPM, I(ij)
-#           Link: https://www.youtube.com/watch?v=76vPudNET6U
-# - [3] : Tangential Geometric Integral SPM, J(ij)
-#           Link: https://www.youtube.com/watch?v=JRHnOsueic8
-# - [4] : Streamline Geometric Integral SPM, Mx(pj) and My(pj)
-#           Link: https://www.youtube.com/watch?v=BnPZjGCatcg
-# - [5] : Solving the System of Equations (SPM)
-#           Link: https://www.youtube.com/watch?v=ep7vPzGYsbw
-# - [6] : Normal Geometric Integral VPM, K(ij)
-#           Link: https://www.youtube.com/watch?v=5lmIv2CUpoc
-# - [7] : Tangential Geometric Integral VPM, L(ij)
-#           Link: https://www.youtube.com/watch?v=IxWJzwIG_gY
-# - [8] : Streamline Geometric Integral VPM, Nx(pj) and Ny(pj)
-#           Link: https://www.youtube.com/watch?v=TBwBnW87hso
-# - [9] : Solving the System of Equations (VPM)
-#           Link: https://www.youtube.com/watch?v=j3ETHFBiYOg
-# - [10]: Source/Vortex Panel Method System of Equations
-#           Link: https://www.youtube.com/watch?v=bc_pkKGEypU
-# - [11]: How To Compute Circulation
-#           Link: https://www.youtube.com/watch?v=b8EnhiSjL3o
-# - [12]: UIUC Airfoil Database: Download All Files using Python
-#           Link: https://www.youtube.com/watch?v=nILo18DlqAo
-# - [13]: Python code for downloading Selig airfoil DAT files
-#           Link: http://www.joshtheengineer.com/2019/01/30/uiuc-airfoil-database-file-download/
+# Based on the files and videos from JoshTheEngineer
 
 import numpy as np
 import math as math
@@ -67,8 +16,8 @@ from COMPUTE_CIRCULATION import COMPUTE_CIRCULATION
 # %% KNOWNS
 
 # Flag to specify creating or loading airfoil
-flagAirfoil = [1,                                                               # Create specified NACA airfoil in XFOIL
-               0]                                                               # Load Selig-format airfoil from directory
+flagAirfoil = [0,                                                               # Create specified NACA airfoil in XFOIL
+               1]                                                               # Load Selig-format airfoil from directory
 
 # User-defined knowns
 Vinf = 1                                                                        # Freestream velocity [] (just leave this at 1)
@@ -103,15 +52,18 @@ PPAR = ['170',                                                                  
 xFoilResults = XFOIL(NACA, PPAR, AoA, flagAirfoil)
 
 # Separate out results from XFOIL function results
-afName  = xFoilResults[0]                                                       # Airfoil name
-xFoilX  = xFoilResults[1]                                                       # X-coordinate for Cp result
-xFoilY  = xFoilResults[2]                                                       # Y-coordinate for Cp result
-xFoilCP = xFoilResults[3]                                                       # Pressure coefficient
+# afName  = xFoilResults[0]                                                       # Airfoil name
+# xFoilX  = xFoilResults[1]                                                       # X-coordinate for Cp result
+# xFoilY  = xFoilResults[2]                                                       # Y-coordinate for Cp result
+# xFoilCP = xFoilResults[3]                                                       # Pressure coefficient
 XB      = xFoilResults[4]                                                       # Boundary point X-coordinate
 YB      = xFoilResults[5]                                                       # Boundary point Y-coordinate
-xFoilCL = xFoilResults[6]                                                       # Lift coefficient
-xFoilCD = xFoilResults[7]                                                       # Drag coefficient
-xFoilCM = xFoilResults[8]                                                       # Moment coefficient
+# xFoilCL = xFoilResults[6]                                                       # Lift coefficient
+# xFoilCD = xFoilResults[7]                                                       # Drag coefficient
+# xFoilCM = xFoilResults[8]                                                       # Moment coefficient
+
+print(XB)
+print(YB)
 
 # Number of boundary points and panels
 numPts = len(XB)                                                                # Number of boundary points
@@ -230,10 +182,10 @@ print("======= RESULTS =======")
 print("Lift Coefficient (CL)")
 print("  SPVP : %2.8f" % CL)                                                    # From this SPVP code
 print("  K-J  : %2.8f" % (2*sum(gamma*S)))                                      # From Kutta-Joukowski lift equation
-print("  XFOIL: %2.8f" % xFoilCL)                                               # From XFOIL program
+# print("  XFOIL: %2.8f" % xFoilCL)                                               # From XFOIL program
 print("Moment Coefficient (CM)")
 print("  SPVP : %2.8f" % CM)                                                    # From this SPVP code
-print("  XFOIL: %2.8f" % xFoilCM)                                               # From XFOIL program
+# print("  XFOIL: %2.8f" % xFoilCM)                                               # From XFOIL program
 
 # %% COMPUTE STREAMLINES - REFS [4] and [8]
 
@@ -377,12 +329,12 @@ if (flagPlot[2] == 1):
 if (flagPlot[3] == 1):
     fig = plt.figure(4)                                                         # Create figure
     plt.cla()                                                                   # Get ready for plotting
-    midIndX = int(np.floor(len(xFoilCP)/2))                                     # Airfoil middle index for XFOIL data
+    # midIndX = int(np.floor(len(xFoilCP)/2))                                     # Airfoil middle index for XFOIL data
     midIndS = int(np.floor(len(Cp)/2))                                          # Airfoil middle index for VPM data
-    plt.plot(xFoilX[0:midIndX],xFoilCP[0:midIndX],                              # Plot Cp for upper surface of airfoil from XFoil
-             'b-',label='XFOIL Upper')
-    plt.plot(xFoilX[midIndX+1:len(xFoilX)],xFoilCP[midIndX+1:len(xFoilX)],      # Plot Cp for lower surface of airfoil from XFoil
-             'r-',label='XFOIL Lower')
+    # plt.plot(xFoilX[0:midIndX],xFoilCP[0:midIndX],                              # Plot Cp for upper surface of airfoil from XFoil
+    #          'b-',label='XFOIL Upper')
+    # plt.plot(xFoilX[midIndX+1:len(xFoilX)],xFoilCP[midIndX+1:len(xFoilX)],      # Plot Cp for lower surface of airfoil from XFoil
+    #          'r-',label='XFOIL Lower')
     plt.plot(XC[midIndS+1:len(XC)],Cp[midIndS+1:len(XC)],                       # Plot Cp for upper surface of airfoil from panel method
              'ks',markerfacecolor='b',label='VPM Upper')
     plt.plot(XC[0:midIndS],Cp[0:midIndS],                                       # Plot Cp for lower surface of airfoil from panel method
