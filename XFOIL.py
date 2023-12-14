@@ -52,6 +52,8 @@ def XFOIL(NACA,PPAR,AoA,flagAirfoil):
         airfoilName = tail[0:len(tail)-4]                                       # Retain only airfoil name, not extension
         
         xFoilResults[0] = airfoilName                                           # Send the airfoil name back from this function
+    
+    print(airfoilName)
         
     # Save-to file names
     saveFlnm    = 'Save_' + airfoilName + '.txt'                                # Airfoil coordinates save-to file

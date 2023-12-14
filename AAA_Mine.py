@@ -49,21 +49,27 @@ PPAR = ['170',                                                                  
 # - Airfoil coordinates
 # - Pressure coefficient along airfoil surface
 # - Lift, drag, and moment coefficients
-xFoilResults = XFOIL(NACA, PPAR, AoA, flagAirfoil)
+# xFoilResults = XFOIL(NACA, PPAR, AoA, flagAirfoil)
 
 # Separate out results from XFOIL function results
 # afName  = xFoilResults[0]                                                       # Airfoil name
 # xFoilX  = xFoilResults[1]                                                       # X-coordinate for Cp result
 # xFoilY  = xFoilResults[2]                                                       # Y-coordinate for Cp result
 # xFoilCP = xFoilResults[3]                                                       # Pressure coefficient
-XB      = xFoilResults[4]                                                       # Boundary point X-coordinate
-YB      = xFoilResults[5]                                                       # Boundary point Y-coordinate
+# XB      = xFoilResults[4]                                                       # Boundary point X-coordinate
+# YB      = xFoilResults[5]                                                       # Boundary point Y-coordinate
 # xFoilCL = xFoilResults[6]                                                       # Lift coefficient
 # xFoilCD = xFoilResults[7]                                                       # Drag coefficient
 # xFoilCM = xFoilResults[8]                                                       # Moment coefficient
 
-print(XB)
-print(YB)
+airfoilName = 'n0012'
+saveFlnm    = 'Save_' + airfoilName + '.txt'
+# Load the data from the text file
+dataBuffer = np.loadtxt(saveFlnm, skiprows=0)                               # Read the XB and YB data from the data file
+
+# Extract data from the loaded dataBuffer array
+XB = dataBuffer[:,0]                                           # Boundary point X-coordinate
+YB = dataBuffer[:,1]                                           # Boundary point Y-coordinate
 
 # Number of boundary points and panels
 numPts = len(XB)                                                                # Number of boundary points
