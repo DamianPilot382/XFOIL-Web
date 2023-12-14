@@ -24,9 +24,7 @@ var chart = new Chart('chart', {
             borderColor: 'black',
             borderWidth: 1,
             pointBackgroundColor: ['#000'],
-            pointBorderColor: ['#000'],
             pointRadius: 3,
-            pointHoverRadius: 5,
             showLine: true,
             fill:true,
         }]
@@ -34,13 +32,16 @@ var chart = new Chart('chart', {
     options: {
         responsive:true,
         aspectRatio:1,
-        legend: false,
-        tooltips: false,
+        maintainAspectRatio: true,
         scales: {
 
-            y:{
-                min: -1,
+            x:{
+                min: 0,
                 max: 1
+            },
+            y: {
+                suggestedMin: -0.2,
+                suggestedMax: 0.2
             }
         }
     }

@@ -125,3 +125,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+Airfoil_DAT_Selig/
+
+__pycache__/
+Airfoil_DAT_Selig/
