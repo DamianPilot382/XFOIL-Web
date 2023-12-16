@@ -3,7 +3,6 @@
     <v-responsive class="align-center text-center fill-height">
       <v-card variant="tonal">
         <h1>Input Panel</h1>
-        <!-- text input for v_inf -->
         <v-text-field
           v-model="v_inf"
           label="Freestream Velocity"
@@ -17,7 +16,7 @@
         <v-file-input
           v-model="csvFile"
           label="Airfoil Data File"
-          accept=".csv"
+          accept=".csv,.dat"
         ></v-file-input>
         <v-btn @click="submit" color="primary">Generate</v-btn>
         <!-- seperator bar -->

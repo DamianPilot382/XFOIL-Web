@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def naca4airfoil(m=0, p=0, t=12):
+def computeNacaAirfoil(m=0, p=0, t=12):
     
     showPlot = False
     
@@ -51,8 +51,9 @@ def naca4airfoil(m=0, p=0, t=12):
         ax.set_xlim([0, 1])
         ax.set_ylim([-0.5, 0.5])       
         plt.show()
-            
-naca4airfoil(2,4,12)
-    
+        
+    text = 'NACA ' + str(int(m*100)) + str(int(p*10)) + str(int(t*100))
+        
+    return text, xu, yu, xl, yl
     
     

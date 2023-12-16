@@ -8,6 +8,14 @@
       <v-container fluid>
         <v-row>
           <v-col cols="7">
+            
+          </v-col>
+          <v-col cols="5">
+            <NACAInputPanel />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="7">
             <GraphPanel />
           </v-col>
           <v-col cols="5">
@@ -22,6 +30,7 @@
 <script setup>
   import InputPanel from './components/InputPanel.vue';
   import GraphPanel from './components/GraphPanel.vue';
+  import NACAInputPanel from './components/NACAInputPanel.vue';
 </script>
 
 <style >

@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from Airfoil import compute
+from naca4 import computeNacaAirfoil
 import numpy as np
 
 
@@ -25,6 +26,16 @@ def compute_airfoil():
 
     text, panel_geometry, geom_pts, control_pts, pressure = compute(vinf, aoa, databuffer)
     return jsonify({'text': text, 'panel_geometry': panel_geometry, 'geom_pts': geom_pts, 'control_pts': control_pts, 'pressure': pressure})
+
+@app.route('/nacaAirfoil', methods=['POST'])
+def nacaAirfoil():
+    data = request.get_json()
+    m = float(data['maxCamber'])
+    p = float(data['maxCamberLoc'])
+    t = float(data['maxThickness'])
+
+    text, xu, yu, xl, yl = computeNacaAirfoil(m, p, t)
+    return jsonify({'text': text, 'xu': xu.tolist(), 'yu': yu.tolist(), 'xl': xl.tolist(), 'yl': yl.tolist()})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
