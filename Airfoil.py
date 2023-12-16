@@ -17,21 +17,12 @@ from STREAMLINE_SPM import STREAMLINE_SPM
 from STREAMLINE_VPM import STREAMLINE_VPM
 from COMPUTE_CIRCULATION import COMPUTE_CIRCULATION
 
-
 PLOT = False
 
-# %% KNOWNS
+def compute(Vinf=1, AoA=5, dataBuffer=np.loadtxt('n0012.txt', skiprows=0)):
+    
+    text_output = "Vinf: %f\nAoA: %f\n" % (Vinf, AoA)
 
-# User-defined knowns
-
-# Freestream velocity [m/s]
-# Angle of attack [deg]
-
-def compute(Vinf=1, AoA=5, dataBuffer: np.ndarray = None):
-    # # NACA airfoil to load [####]
-    # NACA = '0012'
-
-    text_output = ""
 
     # Convert angle of attack to radians
     AoAR = AoA*(np.pi/180)
@@ -43,12 +34,6 @@ def compute(Vinf=1, AoA=5, dataBuffer: np.ndarray = None):
                 1,      # Pressure coefficient comparison (XFOIL vs. VPM)
                 0,      # Airfoil streamlines
                 0]      # Pressure coefficient contour
-
-    # %% CREATE/LOAD AIRFOIL
-
-    # Read the XB and YB data from the data file
-    dataBuffer = np.loadtxt('n0012.txt', skiprows=0)
-
 
     # Boundary point X-coordinate
     XB = dataBuffer[:,0]

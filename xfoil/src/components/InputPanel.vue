@@ -50,14 +50,10 @@ const submit = () => {
     info.value = "Please select an airfoil data file";
     return;
   }
-  // if (v_inf.value === 0) {
-  //   info.value = "Please enter a freestream velocity";
-  //   return;
-  // }
-  // if (aoa.value === 0) {
-  //   info.value = "Please enter an angle of attack";
-  //   return;
-  // }
+  if(v_inf.value === 0) {
+    info.value = "Please enter a freestream velocity";
+    return;
+  }
   var reader = new FileReader();
   var data = [];
   reader.onload = function (e) {

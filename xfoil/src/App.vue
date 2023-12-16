@@ -8,7 +8,7 @@
       <v-container fluid>
         <v-row>
           <v-col cols="7">
-            
+            <AirfoilPanel />
           </v-col>
           <v-col cols="5">
             <NACAInputPanel />
@@ -31,6 +31,7 @@
   import InputPanel from './components/InputPanel.vue';
   import GraphPanel from './components/GraphPanel.vue';
   import NACAInputPanel from './components/NACAInputPanel.vue';
+  import AirfoilPanel from './components/AirfoilPanel.vue';
 </script>
 
 <style >
