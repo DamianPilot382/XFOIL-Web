@@ -24,7 +24,7 @@ def compute_airfoil():
     databuffer = np.array(data['data'])
 
     text, panel_geometry, geom_pts, control_pts, pressure = compute(vinf, aoa, databuffer)
-    return jsonify({'text': text})
+    return jsonify({'text': text, 'panel_geometry': panel_geometry, 'geom_pts': geom_pts, 'control_pts': control_pts, 'pressure': pressure})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -26,7 +26,9 @@
         <v-card>
           <v-card-title>Info</v-card-title>
           <v-card-text>
-            <p>{{ info }}</p>
+            <v-progress-circular v-if="loading" indeterminate color="primary">
+            </v-progress-circular>
+            <p v-else>{{ info }}</p>
           </v-card-text>
         </v-card>
       </v-card>
@@ -36,11 +38,14 @@
   
   <script setup>
 import { ref } from "vue";
+import { useGraphsStore } from "../stores/graphs.js";
 import axios from "axios";
 const csvFile = ref(null);
 const v_inf = ref(0);
 const aoa = ref(0);
+const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
+const imgsrc = ref("");
 const submit = () => {
   if (csvFile.value === null) {
     info.value = "Please select an airfoil data file";
@@ -68,20 +73,43 @@ const submit = () => {
       line[1] = parseFloat(line[1]);
       data.push(line);
     }
-    axios.post("http://localhost:5000/compute", {
-    data: data,
-    v_inf: v_inf.value,
-    aoa: aoa.value,
-  }).then((res) => {
-    console.log(res);
-    info.value = res.data.text;
-  });
+
+    loading.value = true;
+    axios
+      .post("http://localhost:5000/compute", {
+        data: data,
+        v_inf: v_inf.value,
+        aoa: aoa.value,
+      })
+      .then((res) => {
+        console.log(res);
+        info.value = res.data.text;
+        loading.value = false;
+
+        // update graphs store
+        const graphsStore = useGraphsStore();
+        graphsStore.panelGeometry.data = res.data.panel_geometry.data;
+        graphsStore.panelGeometry.img = res.data.panel_geometry.pic;
+        graphsStore.geom_pts.data = res.data.geom_pts.data;
+        graphsStore.geom_pts.img = res.data.geom_pts.pic;
+        graphsStore.control_pts.data = res.data.control_pts.data;
+        graphsStore.control_pts.img = res.data.control_pts.pic;
+        graphsStore.pressure.data = res.data.pressure.data;
+        graphsStore.pressure.img = res.data.pressure.pic;
+      })
+      .catch((err) => {
+        console.log(err);
+        info.value = "Error: " + err;
+      });
   };
 
   reader.readAsText(csvFile.value[0]);
-  console.log(data);
-  // send data to backend
-  
 };
 </script>
-  
+
+<style scoped>
+.v-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+</style>
