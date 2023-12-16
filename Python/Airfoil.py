@@ -19,7 +19,7 @@ from COMPUTE_CIRCULATION import COMPUTE_CIRCULATION
 
 PLOT = False
 
-def compute(Vinf=1, AoA=5, dataBuffer=np.loadtxt('n0012.txt', skiprows=0)):
+def compute(Vinf, AoA, dataBuffer):
     
     text_output = "Vinf: %f\nAoA: %f\n" % (Vinf, AoA)
 
