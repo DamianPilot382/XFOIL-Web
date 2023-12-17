@@ -3,7 +3,6 @@
     <v-responsive class="align-center text-center fill-height">
       <v-card variant="tonal">
         <h1>Input Panel</h1>
-        <!-- text input for v_inf -->
         <v-text-field
           v-model="v_inf"
           label="Freestream Velocity"
@@ -17,7 +16,7 @@
         <v-file-input
           v-model="csvFile"
           label="Airfoil Data File"
-          accept=".csv"
+          accept=".csv,.dat"
         ></v-file-input>
         <v-btn @click="submit" color="primary">Generate</v-btn>
         <!-- seperator bar -->
@@ -53,14 +52,10 @@ const submit = () => {
     info.value = "Please select an airfoil data file";
     return;
   }
-  // if (v_inf.value === 0) {
-  //   info.value = "Please enter a freestream velocity";
-  //   return;
-  // }
-  // if (aoa.value === 0) {
-  //   info.value = "Please enter an angle of attack";
-  //   return;
-  // }
+  if(v_inf.value === 0) {
+    info.value = "Please enter a freestream velocity";
+    return;
+  }
   var reader = new FileReader();
   var data = [];
   reader.onload = function (e) {
