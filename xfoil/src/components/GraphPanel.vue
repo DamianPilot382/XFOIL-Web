@@ -3,7 +3,8 @@
     <v-responsive class="align-center text-center fill-height">
       <v-card variant="tonal">
           <h1>Airfoil</h1>
-          airfoil graph 1
+          <div ref="ctrlPtsGraph"> </div>
+
         <div v-if="graphsUpdated">
           <h1>Graphs</h1>
 
@@ -44,6 +45,7 @@
           </v-col>
           </v-row>
         </div>
+        <v-btn @click="submit" color="primary">Generate</v-btn>
       </v-card>
     </v-responsive>
   </v-container>
@@ -53,6 +55,10 @@
 // import graph store
 import { useGraphsStore } from "../stores/graphs.js";
 import { ref, computed } from "vue";
+import Plotly from "plotly.js-dist";
+
+
+const ctrlPtsGraph = ref();
 
 const graphsUpdated = computed(() => {
   const graphsStore = useGraphsStore();
@@ -64,6 +70,37 @@ const useImgs = computed(() => {
   return graphsStore.mode == "img";
 });
 
+const ctrlPts = computed(() => {
+  const graphsStore = useGraphsStore();
+
+  var data = [
+    {
+      x: graphsStore.panelGeometry.fillData[0],
+      y: graphsStore.panelGeometry.fillData[1],
+      // marker: {
+      //   color: "rgba(0, 0, 0, 0.5)",
+      // },
+      type: "scatter",
+      name: "Control Points",
+      // hide from legend
+      showlegend: false,
+    },
+    {
+      x: graphsStore.panelGeometry.fillData[0],
+      y: graphsStore.panelGeometry.fillData[1],
+      // marker: {
+      //   color: "rgba(0, 0, 0, 0.5)",
+
+      // },
+      mode: "markers",
+      type: "scatter",
+      name: "Control Points",
+    },
+  ];
+
+  return data;
+});
+
 // computed graphs from store
 const imgs = computed(() => {
   const graphsStore = useGraphsStore();
@@ -73,14 +110,30 @@ const imgs = computed(() => {
   srcs.push("data:image/png;base64," + graphsStore.geom_pts.img);
   srcs.push("data:image/png;base64," + graphsStore.control_pts.img);
   srcs.push("data:image/png;base64," + graphsStore.pressure.img);
+
+
   return srcs;
 });
 
 const submit = () => {
   // get graphs store
   const graphsStore = useGraphsStore();
-  // get graphs
-  console.log(graphsStore);
+  console.log(graphsStore.panelGeometry);
+
+  // update graphs with equal scaling on x and y axes, and disable panning and zooming
+  Plotly.newPlot(ctrlPtsGraph.value, ctrlPts.value, {
+    autosize: true,
+    xaxis: {
+      scaleanchor: "y",
+      scaleratio: 1,
+      fixedrange: true,
+    },
+    yaxis: {
+      fixedrange: true,
+    },
+    // showLegend: true,
+
+  });
 };
 </script>
   

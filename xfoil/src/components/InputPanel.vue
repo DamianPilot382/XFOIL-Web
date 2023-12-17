@@ -37,9 +37,11 @@
 </template>
   
   <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useGraphsStore } from "../stores/graphs.js";
 import axios from "axios";
+import { load } from "plotly.js-dist";
+
 const csvFile = ref(null);
 const v_inf = ref(0);
 const aoa = ref(0);
@@ -89,6 +91,7 @@ const submit = () => {
         // update graphs store
         const graphsStore = useGraphsStore();
         graphsStore.panelGeometry.data = res.data.panel_geometry.data;
+        graphsStore.panelGeometry.fillData = res.data.panel_geometry.fillData;
         graphsStore.panelGeometry.img = res.data.panel_geometry.pic;
         graphsStore.geom_pts.data = res.data.geom_pts.data;
         graphsStore.geom_pts.img = res.data.geom_pts.pic;
@@ -98,6 +101,7 @@ const submit = () => {
         graphsStore.pressure.img = res.data.pressure.pic;
       })
       .catch((err) => {
+        loading.value = false;
         console.log(err);
         info.value = "Error: " + err;
       });

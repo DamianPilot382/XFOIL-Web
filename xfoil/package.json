@@ -11,8 +11,12 @@
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
     "pinia": "^2.1.7",
+    "plotly.js-dist": "^2.27.1",
     "roboto-fontface": "*",
     "vue": "^3.2.0",
+    "vue-chartjs": "^5.3.0",
+    "vue-plotly": "^1.1.0",
+    "vue3-plotly": "^0.0.7",
     "vuetify": "^3.0.0"
   },
   "devDependencies": {
