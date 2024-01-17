@@ -1,21 +1,17 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response, send_file
 from flask_cors import CORS
 from Airfoil import compute
 from naca4 import computeNacaAirfoil
+from io import StringIO
 import numpy as np
-
-
-####
-# pip install Flask flask_cors
-####
 
 # creates a flask server for post requests
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/test', methods=['GET'])
+@app.route('/ping', methods=['GET'])
 def test():
-    return jsonify({'message': 'It works!'})
+    return jsonify({'message': 'Pong'})
 
 @app.route('/compute', methods=['POST'])
 def compute_airfoil():
@@ -33,9 +29,20 @@ def nacaAirfoil():
     m = float(data['maxCamber'])
     p = float(data['maxCamberLoc'])
     t = float(data['maxThickness'])
+    n = int(data['numPoints'])
 
-    text, xu, yu, xl, yl = computeNacaAirfoil(m, p, t)
-    return jsonify({'text': text, 'xu': xu.tolist(), 'yu': yu.tolist(), 'xl': xl.tolist(), 'yl': yl.tolist()})
+    datapoints = computeNacaAirfoil(m, p, t, n)
+
+    # return send_file(
+    #     "n0012.csv",
+    #     mimetype="text/csv",
+    #     download_name="airfoil.csv",
+    #     as_attachment=True)
+        
+    return Response(
+       datapoints.to_csv(index=False),
+       mimetype="text/csv",
+       headers={"Content-disposition":"attachment; filename=airfoil.csv"})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -10,6 +10,7 @@
     "@mdi/font": "7.0.96",
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
+    "d3-color": "^3.1.0",
     "pinia": "^2.1.7",
     "plotly.js-dist": "^2.27.1",
     "roboto-fontface": "*",

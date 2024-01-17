@@ -29,7 +29,7 @@
           <v-row>
           <v-col cols="12" md="6">
             <v-card>
-              <v-card-title>Control Points</v-card-title>
+              <v-card-title>Cp vectors at control points</v-card-title>
               <v-card-text>
                 <img v-if="useImgs" :src="imgs[2]" alt="control points" />
               </v-card-text>
@@ -37,7 +37,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <v-card>
-              <v-card-title>Pressure stuffs</v-card-title>
+              <v-card-title>Pressure Coefficient</v-card-title>
               <v-card-text>
                 <img v-if="useImgs" :src="imgs[3]" alt="pressure stuffs" />
               </v-card-text>

@@ -35,7 +35,7 @@
 </script>
 
 <style >
-.v-card {
-  padding: 1rem;
-}
+  .v-card {
+    padding: 1rem;
+  }
 </style>

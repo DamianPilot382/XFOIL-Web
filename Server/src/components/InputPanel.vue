@@ -10,7 +10,7 @@
         ></v-text-field>
         <v-text-field
           v-model="aoa"
-          label="Angle of Attack"
+          label="Angle of Attack (deg)"
           type="number"
         ></v-text-field>
         <v-file-input

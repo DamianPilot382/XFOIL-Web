@@ -18,6 +18,11 @@
           label="Maximum Thickness (3rd and 4th digits)"
           type="number"
         ></v-text-field>
+        <v-text-field
+          v-model="numPoints"
+          label="Number of Points"
+          type="number"
+        ></v-text-field>
         <v-btn @click="submit" color="primary">Generate</v-btn>
         <!-- seperator bar -->
         <v-divider></v-divider>
@@ -42,6 +47,7 @@ import axios from "axios";
 const maxCamber = ref(0);
 const maxCamberLoc = ref(0);
 const maxThickness = ref(0);
+const numPoints = ref(0);
 const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
 const imgsrc = ref("");
@@ -54,12 +60,21 @@ const submit = () => {
       maxCamber: maxCamber.value,
       maxCamberLoc: maxCamberLoc.value,
       maxThickness: maxThickness.value,
+      numPoints: numPoints.value,
     })
     .then((res) => {
       console.log(res);
-      info.value = res.data.text;
+      info.value = "Done!";
       loading.value = false;
-      
+
+      const csv = res.data;
+      const link = document.createElement("a");
+      link.target = "_blank";
+      link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+      link.download = "NACA"+maxCamber.value+maxCamberLoc.value+maxThickness.value+".csv";
+      link.click();
+
+
     })
     .catch((err) => {
       console.log(err);

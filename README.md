@@ -5,16 +5,22 @@
 </p>
 
 ### Setup
-`cd Server`
-`npm i`
-`pip install Flask flask_cors`
+```
+cd Server
+npm i
+pip install Flask flask_cors
+```
 
 ### Startup
 
 One command line:
-`cd Server`
-`npm run dev`
+```
+cd Server
+npm run dev
+```
 
 Another command line:
-`cd Python`
-`python server.py`
+```
+cd Python
+python server.py
+```

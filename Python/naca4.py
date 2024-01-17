@@ -1,11 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-def computeNacaAirfoil(m=0, p=0, t=12):
+def computeNacaAirfoil(m=0, p=0, t=12, n=100):
     
     showPlot = False
-    
-    size = 100
     
     m = m/100
     p = p/10
@@ -13,13 +12,13 @@ def computeNacaAirfoil(m=0, p=0, t=12):
     
     # Define the x-coordinates of the mean camber line points\
     # and the thickness distribution
-    x = np.linspace(0,1,size)
+    x = np.linspace(0,1,n)
     yt = 5*t*(0.2969*np.sqrt(x)-0.1260*x-0.3516*x**2+0.2843*x**3-0.1015*x**4)
     
-    xu = np.linspace(0,1,size)
-    yu = np.linspace(0,1,size)
-    xl = np.linspace(0,1,size)
-    yl = np.linspace(0,1,size)
+    xu = np.linspace(0,1,n)
+    yu = np.linspace(0,1,n)
+    xl = np.linspace(0,1,n)
+    yl = np.linspace(0,1,n)
     
     i = 0
     
@@ -50,10 +49,18 @@ def computeNacaAirfoil(m=0, p=0, t=12):
         ax = plt.gca()
         ax.set_xlim([0, 1])
         ax.set_ylim([-0.5, 0.5])       
-        plt.show()
+        plt.show()        
         
-    text = 'NACA ' + str(int(m*100)) + str(int(p*10)) + str(int(t*100))
-        
-    return text, xu, yu, xl, yl
+    xu = np.flip(xu)
+    yu = np.flip(yu)
+    
+    x = np.append(xu, xl)
+    y = np.append(yu, yl)
+    
+    datapoints = pd.DataFrame({'x': x, 'y': y})
+    
+    print(datapoints)
+    
+    return datapoints
     
     
