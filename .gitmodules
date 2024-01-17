@@ -1,0 +1,3 @@
+[submodule "Xfoil-Server"]
+	path = Xfoil-Server
+	url = https://github.com/DamianPilot382/Xfoil-Server
