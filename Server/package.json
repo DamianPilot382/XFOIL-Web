@@ -18,12 +18,13 @@
     "vue-chartjs": "^5.3.0",
     "vue-plotly": "^1.1.0",
     "vue3-plotly": "^0.0.7",
-    "vuetify": "^3.0.0"
-  },
-  "devDependencies": {
+    "vuetify": "^3.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "unplugin-fonts": "^1.0.3",
     "vite": "^4.2.0",
     "vite-plugin-vuetify": "^1.0.0"
+  },
+  "devDependencies": {
+
   }
 }
