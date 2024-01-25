@@ -44,5 +44,14 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000,
+    strictPort: true,
+    hmr: {
+      port: 3010,
+    },
+    watch: {
+      usePolling: true,
+      // useFsEvents: true,
+      // interval: 100,
+    },
   },
 })

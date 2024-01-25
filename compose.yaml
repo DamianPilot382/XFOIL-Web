@@ -1,9 +1,0 @@
-services:
-  xfoil-server:
-    build: Xfoil-Server
-    ports:
-      - "5000:5000"
-  xfoil-web:
-    build: Server
-    ports:
-      - "3000:3000"
