@@ -23,18 +23,6 @@
           label="Number of Points"
           type="number"
         ></v-text-field>
-        <v-btn @click="submit" color="primary">Generate</v-btn>
-        <!-- seperator bar -->
-        <v-divider></v-divider>
-        <!-- info panel -->
-        <v-card>
-          <v-card-title>Info</v-card-title>
-          <v-card-text>
-            <v-progress-circular v-if="loading" indeterminate color="primary">
-            </v-progress-circular>
-            <p v-else>{{ info }}</p>
-          </v-card-text>
-        </v-card>
       </v-card>
     </v-responsive>
   </v-container>
@@ -42,7 +30,6 @@
   
   <script setup>
 import { ref } from "vue";
-import { useGraphsStore } from "../stores/graphs.js";
 import axios from "axios";
 const maxCamber = ref(0);
 const maxCamberLoc = ref(0);
@@ -82,6 +69,7 @@ const submit = () => {
     });
 };
 
+defineExpose({ submit });
 </script>
 
 <style scoped>
