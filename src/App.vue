@@ -13,6 +13,11 @@
             <AirfoilPanel />
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="12">
+            <NewGraph />
+          </v-col>
+        </v-row>
         
       </v-container>
     </v-main>
@@ -21,7 +26,8 @@
 </template>
 
 <script setup>
-
+import AirfoilPanel from './components/Airfoil/AirfoilPanel.vue'
+import NewGraph from './components/NewGraph.vue'
 </script>
 
 <style >

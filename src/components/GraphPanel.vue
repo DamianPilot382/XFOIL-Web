@@ -53,7 +53,7 @@
   
   <script setup>
 // import graph store
-import { useGraphsStore } from "../stores/graphs.js";
+// import { useGraphsStore } from "../stores/graphs.js";
 import { ref, computed } from "vue";
 import Plotly from "plotly.js-dist";
 
