@@ -8,14 +8,15 @@
       <br>
       <h1 class="text-center">Xfoil-Web</h1>
       <v-container fluid>
-        <v-row>
+        <!-- <v-row>
           <v-col cols="12">
             <AirfoilPanel />
           </v-col>
-        </v-row>
+        </v-row> -->
         <v-row>
           <v-col cols="12">
             <NewGraph />
+            <!-- <Draggable /> -->
           </v-col>
         </v-row>
         
@@ -27,7 +28,9 @@
 
 <script setup>
 import AirfoilPanel from './components/Airfoil/AirfoilPanel.vue'
-import NewGraph from './components/NewGraph.vue'
+import NewGraph from './components/Graphs/NewGraph.vue'
+// import Draggable from './components/Graphs/Draggable.vue'
+
 </script>
 
 <style >
