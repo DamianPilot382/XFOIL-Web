@@ -23,6 +23,7 @@
           label="Number of Points"
           type="number"
         ></v-text-field>
+        <h2>NACA {{ maxCamber }}{{ maxCamberLoc }}{{ maxThickness }}</h2>
       </v-card>
     </v-responsive>
   </v-container>
@@ -43,7 +44,7 @@ const submit = () => {
   loading.value = true;
 
   axios
-    .post("http://localhost:5000/nacaAirfoil", {
+    .post("http://localhost:5000/NACA4Airfoil", {
       maxCamber: maxCamber.value,
       maxCamberLoc: maxCamberLoc.value,
       maxThickness: maxThickness.value,

@@ -19,11 +19,14 @@ import { ref, computed } from "vue";
 import axios from "axios";
 
 const csvFile = ref(null);
+
 const submit = () => {
+  console.log("File Input SUBMIT");
   if (csvFile.value === null) {
-    info.value = "Please select an airfoil data file";
+    console.log("No file selected");
     return;
   }
+
   var reader = new FileReader();
   var data = [];
   reader.onload = function (e) {
@@ -39,17 +42,17 @@ const submit = () => {
       data.push(line);
     }
 
-    loading.value = true;
     axios
-      .post("http://localhost:5000/compute", {
+      .post("http://localhost:5000/InputFile", {
         data: data,
       })
       .then((res) => {
+        console.log("SUCCESS");
         console.log(res);
       })
       .catch((err) => {
+        console.log("ERROR");
         console.log(err);
-        info.value = "Error: " + err;
       });
   };
 

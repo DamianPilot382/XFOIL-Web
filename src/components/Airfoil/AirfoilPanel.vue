@@ -24,9 +24,15 @@
             </v-col>
           </v-row>
         <br>
+        <br>
         <v-divider></v-divider>
         <br>
         <v-btn @click="submit" color="primary" v-show="submitBtnEnabled">Generate</v-btn>
+      </v-card>
+      <br>
+      <br>
+      <v-card>
+        <NewGraph ref="airfoilGraph"/>
       </v-card>
     </v-responsive>
   </v-container>
@@ -42,6 +48,7 @@ import { shallowRef, ref } from "vue";
 var inputPanel = ref(null);
 var inputMethodSelected = shallowRef(null);
 var submitBtnEnabled = ref(false);
+var airfoilGraph = ref(null);
 
 const getSelectionFromDropdown = (selection) => {
 
@@ -59,12 +66,19 @@ const getSelectionFromDropdown = (selection) => {
 };
 
 const submit = () => {
-  if(inputMethodSelected.value == null){
-    console.log("No input panel selected");
-    return;
-  }
+  console.log("AirfoilPanel SUBMIT");
 
-  inputPanel.value.submit();
+  // if(inputMethodSelected.value == null){
+  //   console.log("No input panel selected");
+  //   return;
+  // }
+
+  airfoilGraph.value.airfoilData = [{x: 1, y: 0},
+                                    {x: 2, y: 1},];
+
+  airfoilGraph.value.updateChart();
+
+  // inputPanel.value.submit();
 };
 
 </script>

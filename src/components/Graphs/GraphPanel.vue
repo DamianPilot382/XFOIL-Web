@@ -51,7 +51,7 @@
   </v-container>
 </template>
   
-  <script setup>
+<script setup>
 // import graph store
 // import { useGraphsStore } from "../stores/graphs.js";
 import { ref, computed } from "vue";
@@ -118,7 +118,7 @@ const imgs = computed(() => {
 const submit = () => {
   // get graphs store
   const graphsStore = useGraphsStore();
-  console.log(graphsStore.panelGeometry);
+  console.log(graphsStore.panelGeometry); 
 
   // update graphs with equal scaling on x and y axes, and disable panning and zooming
   Plotly.newPlot(ctrlPtsGraph.value, ctrlPts.value, {
