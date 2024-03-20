@@ -42,6 +42,8 @@ const submit = () => {
       data.push(line);
     }
 
+    console.log(data);
+
     axios
       .post("http://localhost:5000/InputFile", {
         data: data,

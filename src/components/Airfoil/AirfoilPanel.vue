@@ -19,7 +19,6 @@
               <!-- Input Method -->
               <component :is="inputMethodSelected" ref="inputPanel"
               ></component>
-              <!-- <FileInputPanel ref="doge"/> -->
 
             </v-col>
           </v-row>
@@ -43,6 +42,8 @@
 import FileInputPanel from "./FileInputPanel.vue";
 import NACAInputPanel from "./NACAInputPanel.vue";
 import { shallowRef, ref } from "vue";
+import NewGraph from "../Graphs/NewGraph.vue";
+import ExampleGraph from "../Graphs/ExampleGraph.vue";
 
 
 var inputPanel = ref(null);
@@ -73,12 +74,14 @@ const submit = () => {
   //   return;
   // }
 
-  airfoilGraph.value.airfoilData = [{x: 1, y: 0},
-                                    {x: 2, y: 1},];
+  // airfoilGraph.value.airfoilData = [{x: 1, y: 0},
+  //                                   {x: 2, y: 1},];
 
-  airfoilGraph.value.updateChart();
+  // airfoilGraph.value.updateChart();
 
-  // inputPanel.value.submit();
+  inputPanel.value.submit();
+  // airfoilGraph.value.doge();
 };
+
 
 </script>

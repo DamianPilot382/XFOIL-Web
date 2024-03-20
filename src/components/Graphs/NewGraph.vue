@@ -3,7 +3,7 @@
     <v-responsive class="align-center text-center fill-height">
       <v-card variant="tonal">
         <h2>Airfoil Plot</h2>
-        <canvas id="chart"></canvas>
+        <canvas id="chart" ref="airfoilGraph"></canvas>
       </v-card>
     </v-responsive>
   </v-container>
@@ -92,66 +92,44 @@ export default {
         data: chartData.chartData,
         options: chartData.chartOptions,
       })
+
+      // console.log(ctx);
+    },
+    waitForElement(selector, callback) {
+      if (document.querySelector(selector)) {
+        callback();
+      } else {
+        setTimeout(() => waitForElement(selector, callback), 500);
+      }
     },
     async updateChart(){
       console.log("doChart");
-      // console.log(airfoilGraph.value);
-      // console.log(airfoilGraph.value.data);
-      // airfoilGraph.value.data = [{x: 1, y: 0},
-      //                            {x: 2, y: 1},];
-      // console.log(airfoilGraph.value.data);
-
-      // airfoilGraph.value.update();
-      // airfoilGraph.value.destroy();
-      // this.createChart('chart', this)
-
-      // console.log(airfoilGraph.value);
-
-      
-      // console.log(airfoilGraph.value.data.datasets[0].data[0]);
-      // airfoilGraph.value.data.datasets[0].data[0] = {x: 2, y: 3};
-
-      // console.log(airfoilGraph.value.data.datasets[0].data[0]);
-
-      // airfoilGraph.value.update();
-
-
-      // const elDoge = {datasets: [{
-      //     data: [{x: 1, y: 0},
-      //            {x: 2, y: 1},],
-      //     dragData: true,
-      //   }]};
-
-      // if(airfoilGraph.value != null){
-      //   airfoilGraph.value.destroy();
-      // }
-
-      // const ctx = document.getElementById('chart')
-
-      // // await this.$nextTick();
-
-      
-      // airfoilGraph.value = new Chart(ctx, {
-      //   type: this.type,
-      //   data: elDoge,
-      //   options: this.chartOptions,
-      // })
-
-      
-      // console.log(airfoilGraph.value.data);
-
-      // airfoilGraph.value.data = {datasets: [{
-      //   data: [{x: 1.000000, y: 0.004571},
-      //          {x: 0.975680, y:  0},],
-      //   dragData: true,
-      // }]};
-
-      // console.log(airfoilGraph.value.data);
-
-      airfoilGraph.value.update();
       
 
-    }
+      if(airfoilGraph.value != null){
+        airfoilGraph.value.destroy();
+      }
+      var ctx = null;
+      ctx = document.getElementById('chart');
+      
+      console.log("bonk")
+      this.waitForElement("#chart", () => {
+        // Element-specific code here
+        console.log("waiting")
+        ctx = document.getElementById('chart');
+      });
+      console.log("fewa")
+
+      console.log(ctx);
+
+      if(ctx != null){
+        console.log("ctx not null")
+      }
+    },
+
+
+
+
   }
 }
 
