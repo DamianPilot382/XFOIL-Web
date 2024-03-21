@@ -21,7 +21,6 @@ function getAirfoilName(){
 
 }
 
-
 const submit = () => {
 
   axios
