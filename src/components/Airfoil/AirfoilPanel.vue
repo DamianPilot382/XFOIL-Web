@@ -31,7 +31,7 @@
       <br>
       <br>
       <v-card>
-        <NewGraph ref="airfoilGraph"/>
+        <AirfoilGraph ref="airfoilGraph"/>
       </v-card>
     </v-responsive>
   </v-container>
@@ -42,7 +42,7 @@
 import FileInputPanel from "./FileInputPanel.vue";
 import NACAInputPanel from "./NACAInputPanel.vue";
 import { shallowRef, ref } from "vue";
-import NewGraph from "../Graphs/NewGraph.vue";
+import AirfoilGraph from "../Graphs/AirfoilGraph.vue";
 
 
 var inputPanel = ref(null);

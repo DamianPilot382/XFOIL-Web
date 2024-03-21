@@ -22,14 +22,30 @@
   };
   
   var myOptions = {
+    aspectRatio: 8,
+    showLegend: false,
+    pointRadius: 8,
+    showLine: true,
+    pointBackgroundColor: 'rgba(1, 0, 0, 1)',
+    autosize: true,
+    responsive: true,
+    
+    xaxis: {
+        scaleanchor: "y",
+        scaleratio: 1,
+        fixedrange: true,
+    },
+    yaxis: {
+        fixedrange: true,
+    },
     plugins: {
       dragData: {
         round: 10,
         dragX: true,
         showTooltip: true,
-        // onDragStart: function (e, element) {console.log('drag start', element);},
-        // onDrag: function (e, datasetIndex, index, value) {console.log('onDrag');},
-        // onDragEnd: function (e, datasetIndex, index, value) {console.log('onDragEnd');},
+        onDragStart: function (e, element) {},
+        onDrag: function (e, datasetIndex, index, value) {},
+        onDragEnd: function (e, datasetIndex, index, value) {},
       },
     },
     animation: {
@@ -49,7 +65,6 @@
   );
 
   const myChart = ref(null);
-  const doge = ref(null);
 
   onMounted(() => {
   })
@@ -69,8 +84,14 @@
 </script>
   
 <template>
-  <Scatter :data="myData" :options="myOptions"/>
-  {{ myData }}
-  <v-btn ref="doge" @click="submit" color="primary">Change</v-btn>
-
+  <v-container class="fill-height">
+    <v-responsive class="align-center text-center fill-height">
+      <v-card variant="tonal">
+        <h2>Airfoil Plot</h2>
+        <Scatter :data="myData" :options="myOptions"/>
+        {{ myData }}
+        <v-btn ref="doge" @click="submit" color="primary">Change</v-btn>
+      </v-card>
+    </v-responsive>
+  </v-container>
 </template>
