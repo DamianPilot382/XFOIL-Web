@@ -43,7 +43,6 @@ import FileInputPanel from "./FileInputPanel.vue";
 import NACAInputPanel from "./NACAInputPanel.vue";
 import { shallowRef, ref } from "vue";
 import NewGraph from "../Graphs/NewGraph.vue";
-import ExampleGraph from "../Graphs/ExampleGraph.vue";
 
 
 var inputPanel = ref(null);
