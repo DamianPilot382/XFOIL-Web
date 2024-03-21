@@ -1,7 +1,16 @@
 {
-  "name": "xfoil",
+  "name": "xfoil-web",
   "version": "0.0.0",
   "type": "module",
+  "author": "Damian Ugalde <damianugalde@gmail.com> (http://damianugalde.com/)",
+  "contributors": [
+    "Maximum Wilder-Smith <maxwildersmith@gmail.com> (https://maxwildersmith.com/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamianPilot382/XFOIL-Web"
+  },
+  "homepage": "http://aerospacehelper.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

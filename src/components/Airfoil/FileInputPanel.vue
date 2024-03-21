@@ -1,19 +1,3 @@
-<template>
-  <v-container class="fill-height">
-    <v-responsive class="align-center text-center fill-height">
-      <v-card variant="tonal">
-        <h1>Input Panel</h1>
-        <v-file-input
-          v-model="csvFile"
-          label="Airfoil Data File"
-          accept=".csv,.dat"
-        ></v-file-input>
-        
-      </v-card>
-    </v-responsive>
-  </v-container>
-</template>
-  
 <script setup>
 import { ref, computed } from "vue";
 import axios from "axios";
@@ -64,6 +48,22 @@ const submit = () => {
 defineExpose({ submit });
 
 </script>
+
+<template>
+  <v-container class="fill-height">
+    <v-responsive class="align-center text-center fill-height">
+      <v-card variant="tonal">
+        <h1>Input Panel</h1>
+        <v-file-input
+          v-model="csvFile"
+          label="Airfoil Data File"
+          accept=".csv,.dat"
+        ></v-file-input>
+        
+      </v-card>
+    </v-responsive>
+  </v-container>
+</template>
 
 <style scoped>
 .v-divider {

@@ -1,10 +1,10 @@
 services:
-  # xfoil-server:
-  #   build: Xfoil-Server
-  #   volumes:
-  #    - ./XFOIL-Server/:/app
-  #   ports:
-  #     - "5000:5000"
+  xfoil-server:
+    build: Xfoil-Server
+    volumes:
+     - ./XFOIL-Server/:/app
+    ports:
+      - "5000:5000"
   xfoil-web:
     restart: always
     command: sh -c "npm run dev"
