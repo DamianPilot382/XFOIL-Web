@@ -1,16 +1,28 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+
+// NACA 4-Series Airfoil Inputs
 const maxCamber = ref(0);
 const maxCamberLoc = ref(0);
 const maxThickness = ref(0);
-const numPoints = ref(0);
-const loading = ref(false);
-const info = ref("Enter parameters and click generate to begin");
-const imgsrc = ref("");
-const submit = () => {
 
-  loading.value = true;
+// Number of points to generate
+const numPoints = ref(0);
+
+function getAirfoilName(){
+  var airfoilName = "NACA "+maxCamber.value+maxCamberLoc.value;
+
+  if(maxThickness.value < 10)
+    airfoilName += "0"+maxThickness.value;
+  else
+    airfoilName += maxThickness.value;
+  return airfoilName;
+
+}
+
+
+const submit = () => {
 
   axios
     .post("http://localhost:5000/NACA4Airfoil", {
@@ -20,15 +32,12 @@ const submit = () => {
       numPoints: numPoints.value,
     })
     .then((res) => {
-      console.log(res);
-      info.value = "Done!";
-      loading.value = false;
 
       const csv = res.data;
       const link = document.createElement("a");
       link.target = "_blank";
       link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
-      link.download = "NACA"+maxCamber.value+maxCamberLoc.value+maxThickness.value+".csv";
+      link.download = getAirfoilName() + ".csv";
       link.click();
 
 
@@ -67,7 +76,7 @@ defineExpose({ submit });
           label="Number of Points"
           type="number"
         ></v-text-field>
-        <h2>NACA {{ maxCamber }}{{ maxCamberLoc }}{{ maxThickness }}</h2>
+        <h2 v-html="getAirfoilName()"></h2>
       </v-card>
     </v-responsive>
   </v-container>
