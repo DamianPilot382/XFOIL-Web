@@ -40,40 +40,32 @@ airfoilData.value = {
 
 var config = {
   aspectRatio: 8,
-  pointRadius: 6,
+  pointRadius: 5,
   showLine: true,
   pointBackgroundColor: 'rgba(1, 0, 0, 1)',
-  autosize: true,
-  responsive: true,
   scales: {
+    x: {
+      min: -0.01,
+      max: 1.01,
+    },
     y: {
       min: -0.13,
-      max: 0.13
+      max: 0.13,
     }
   },
   xaxis: {
       scaleanchor: "y",
       scaleratio: 1,
   },
-  yaxis: {
-  },
   plugins: {
     dragData: {
       round: 10,
       dragX: true,
-      showTooltip: true,
-      onDragStart: function (e, element) {},
-      onDrag: function (e, datasetIndex, index, value) {},
-      onDragEnd: function (e, datasetIndex, index, value) {},
     },
     legend: {
       display: false,
     },
-  },
-  animation: {
-    onComplete: function() {
-    }
-  },
+  }
 };
 
 ChartJS.register(
@@ -95,6 +87,7 @@ ChartJS.register(
 
         <h2>Airfoil Plot</h2>
 
+        {{ airfoilData.value }}
         <Scatter :data="airfoilData.value" :options="config"/>
         
       </v-card>
