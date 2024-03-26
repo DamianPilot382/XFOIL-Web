@@ -5,7 +5,7 @@ import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
 
 const csvFile = ref(null);
-const airfoilDataStore = useAirfoilDataStore();
+const airfoilData = useAirfoilDataStore().airfoilData;
 
 const submit = () => {
   console.log("File Input SUBMIT");

@@ -3,6 +3,8 @@ import { ref } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
+const airfoilData = useAirfoilDataStore().airfoilData;
+
 // NACA 4-Series Airfoil Inputs
 const maxCamber = ref(0);
 const maxCamberLoc = ref(0);

@@ -13,9 +13,7 @@ import { Scatter } from 'vue-chartjs';
 import { ref } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
-
-var airfoilDataStore = useAirfoilDataStore();
-var airfoilData = airfoilDataStore.airfoilData;
+var airfoilData = useAirfoilDataStore().airfoilData;
 
 airfoilData.value = { 
   datasets: [{

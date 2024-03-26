@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
 import axios from "axios";
-import AirfoilGraph from "../Graphs/AirfoilGraph.vue";
 import { reactive } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
@@ -12,9 +11,11 @@ const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
 const imgsrc = ref("");
 
+const airfoilData = useAirfoilDataStore().airfoilData;
+
+
 const submit = () => {
   console.log("el Doge");
-  console.log(AirfoilGraph.airfoilData);
 };
 
 const compute = () => {
