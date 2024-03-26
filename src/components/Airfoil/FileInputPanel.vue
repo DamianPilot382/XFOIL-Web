@@ -38,8 +38,6 @@ const submit = () => {
       .then((res) => {
         console.log("SUCCESS");
         console.log(res);
-        airfoilDataStore.airfoilData = "El Shiba";
-        console.log(airfoilDataStore.airfoilData);
       })
       .catch((err) => {
         console.log("ERROR");

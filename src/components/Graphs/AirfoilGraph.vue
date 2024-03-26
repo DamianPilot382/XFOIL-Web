@@ -13,9 +13,9 @@ import { Scatter } from 'vue-chartjs';
 import { ref } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
-const airfoilData = ref({});
-const airfoilDataStore = useAirfoilDataStore();
 
+var airfoilDataStore = useAirfoilDataStore();
+var airfoilData = airfoilDataStore.airfoilData;
 
 airfoilData.value = { 
   datasets: [{
@@ -87,7 +87,7 @@ ChartJS.register(
 );
 
 function submit(){
-  console.log(airfoilDataStore.airfoilData);
+  console.log("Changed");
   airfoilData.value = {
   datasets: [{
     data: [ {x: 0.00, y: 0.00},
@@ -111,6 +111,7 @@ function submit(){
             {x: 0.90, y: 0.00},
             {x: 0.95, y: 0.00},
             {x: 1.00, y: 0.00} ]}]};
+  console.log(airfoilData.value);
 }
 
 </script>
@@ -122,11 +123,9 @@ function submit(){
 
         <h2>Airfoil Plot</h2>
 
-        <Scatter :data="airfoilData" :options="graphOptions"/>
+        <Scatter :data="airfoilData.value" :options="graphOptions"/>
 
         {{ airfoilData }}
-        <br>
-        {{ airfoilDataStore }}
         <br>
         <v-btn @click="submit" color="primary">Change</v-btn>
         

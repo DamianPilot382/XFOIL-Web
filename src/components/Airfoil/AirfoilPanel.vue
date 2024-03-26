@@ -6,7 +6,6 @@ import { shallowRef, ref } from "vue";
 import AirfoilGraph from "../Graphs/AirfoilGraph.vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
-
 // Input type currently being used
 var inputPanel = ref(null);
 

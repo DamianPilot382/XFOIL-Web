@@ -5,7 +5,6 @@ import AirfoilGraph from "../Graphs/AirfoilGraph.vue";
 import { reactive } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
-
 const csvFile = ref(null);
 const v_inf = ref(0);
 const aoa = ref(0);
