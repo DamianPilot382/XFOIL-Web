@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useAirfoilDataStore } from "../../stores/airfoilData.js";
+
 
 const csvFile = ref(null);
+const airfoilDataStore = useAirfoilDataStore();
 
 const submit = () => {
   console.log("File Input SUBMIT");
@@ -35,6 +38,8 @@ const submit = () => {
       .then((res) => {
         console.log("SUCCESS");
         console.log(res);
+        airfoilDataStore.airfoilData = "El Shiba";
+        console.log(airfoilDataStore.airfoilData);
       })
       .catch((err) => {
         console.log("ERROR");

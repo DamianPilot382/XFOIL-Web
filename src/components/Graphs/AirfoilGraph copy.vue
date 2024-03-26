@@ -11,11 +11,8 @@ import {
 import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
 import { ref } from "vue";
-import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
 const airfoilData = ref({});
-const airfoilDataStore = useAirfoilDataStore();
-
 
 airfoilData.value = { 
   datasets: [{
@@ -87,7 +84,6 @@ ChartJS.register(
 );
 
 function submit(){
-  console.log(airfoilDataStore.airfoilData);
   airfoilData.value = {
   datasets: [{
     data: [ {x: 0.00, y: 0.00},
@@ -113,6 +109,8 @@ function submit(){
             {x: 1.00, y: 0.00} ]}]};
 }
 
+defineExpose({ airfoilData });
+
 </script>
   
 <template>
@@ -125,8 +123,6 @@ function submit(){
         <Scatter :data="airfoilData" :options="graphOptions"/>
 
         {{ airfoilData }}
-        <br>
-        {{ airfoilDataStore }}
         <br>
         <v-btn @click="submit" color="primary">Change</v-btn>
         

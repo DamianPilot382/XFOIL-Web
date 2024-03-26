@@ -21,6 +21,7 @@
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
     "chartjs-plugin-dragdata": "^2.2.5",
+    "pinia": "^2.1.7",
     "roboto-fontface": "*",
     "vue": "^3.2.0",
     "vue-chartjs": "^5.3.0",
