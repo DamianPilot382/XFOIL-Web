@@ -25,8 +25,6 @@ const airfoilData = useAirfoilDataStore().airfoilData;
     <!-- === Main Content === -->
     <v-main>
 
-      <p style="text-align: center">El Doge {{ airfoilData.value }} shiba</p>
-
       <!-- === Airfoil Panel Section === -->
       <v-container fluid>
         <v-row>

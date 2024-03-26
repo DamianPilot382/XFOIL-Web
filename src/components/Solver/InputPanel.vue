@@ -15,7 +15,7 @@ const airfoilData = useAirfoilDataStore().airfoilData;
 
 
 const submit = () => {
-  console.log("el Doge");
+  console.log("InputPanel Submit");
 };
 
 const compute = () => {
@@ -82,7 +82,7 @@ const compute = () => {
   <v-container class="fill-height">
     <v-responsive class="align-center text-center fill-height">
       <v-card variant="tonal">
-        <h1>Input Panel Doge</h1>
+        <h1>Input Panel</h1>
         <v-text-field
           v-model="v_inf"
           label="Freestream Velocity"

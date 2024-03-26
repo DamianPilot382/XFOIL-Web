@@ -10,7 +10,6 @@ import {
 } from 'chart.js';
 import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
-import { ref } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
 var airfoilData = useAirfoilDataStore().airfoilData;
