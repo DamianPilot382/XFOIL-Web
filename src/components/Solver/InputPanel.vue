@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
 import axios from "axios";
-import { reactive } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
 const v_inf = ref(0);
@@ -10,8 +9,6 @@ const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
 
 const airfoilData = useAirfoilDataStore().airfoilData;
-
-
 
 const compute = () => {
 
