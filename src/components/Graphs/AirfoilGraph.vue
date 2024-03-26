@@ -1,13 +1,5 @@
 <script setup>
-import {
-  Chart as ChartJS,
-  Tooltip,
-  Legend,
-  PointElement,
-  LineElement,
-  LinearScale,
-  Filler
-} from 'chart.js';
+import { Chart, PointElement, LineElement, LinearScale } from 'chart.js';
 import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
@@ -39,10 +31,10 @@ airfoilData.value = {
             {x: 1.000000, y:  0.000000} ]}]};
 
 var config = {
-  aspectRatio: 8,
+  aspectRatio: 6,
   pointRadius: 5,
   showLine: true,
-  pointBackgroundColor: 'rgba(1, 0, 0, 1)',
+  pointBackgroundColor: 'rgba(0, 0, 0, 1)',
   scales: {
     x: {
       min: -0.01,
@@ -68,15 +60,7 @@ var config = {
   }
 };
 
-ChartJS.register(
-  LinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-  dragData,
-  Legend
-);
+Chart.register(LinearScale, PointElement, LineElement, dragData);
 
 </script>
   
@@ -87,7 +71,6 @@ ChartJS.register(
 
         <h2>Airfoil Plot</h2>
 
-        {{ airfoilData.value }}
         <Scatter :data="airfoilData.value" :options="config"/>
         
       </v-card>
