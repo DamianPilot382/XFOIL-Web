@@ -86,34 +86,6 @@ ChartJS.register(
   Legend
 );
 
-function submit(){
-  console.log("Changed");
-  airfoilData.value = {
-  datasets: [{
-    data: [ {x: 0.00, y: 0.00},
-            {x: 0.05, y: 0.00},
-            {x: 0.10, y: 0.00},
-            {x: 0.15, y: 0.00},
-            {x: 0.20, y: 0.00},
-            {x: 0.25, y: 0.00},
-            {x: 0.30, y: 0.00},
-            {x: 0.35, y: 0.00},
-            {x: 0.40, y: 0.00},
-            {x: 0.45, y: 0.00},
-            {x: 0.50, y: 0.00},
-            {x: 0.55, y: 0.00},
-            {x: 0.60, y: 0.00},
-            {x: 0.65, y: 0.00},
-            {x: 0.70, y: 0.00},
-            {x: 0.75, y: 0.00},
-            {x: 0.80, y: 0.00},
-            {x: 0.85, y: 0.00},
-            {x: 0.90, y: 0.00},
-            {x: 0.95, y: 0.00},
-            {x: 1.00, y: 0.00} ]}]};
-  console.log(airfoilData.value);
-}
-
 </script>
   
 <template>
@@ -124,8 +96,6 @@ function submit(){
         <h2>Airfoil Plot</h2>
 
         <Scatter :data="airfoilData.value" :options="config"/>
-
-        <v-btn @click="submit" color="primary">Change</v-btn>
         
       </v-card>
     </v-responsive>
