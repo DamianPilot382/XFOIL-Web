@@ -4,48 +4,29 @@ import axios from "axios";
 import { reactive } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
-const csvFile = ref(null);
 const v_inf = ref(0);
 const aoa = ref(0);
 const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
-const imgsrc = ref("");
 
 const airfoilData = useAirfoilDataStore().airfoilData;
 
 
-const submit = () => {
-  console.log("InputPanel Submit");
-};
 
 const compute = () => {
-  if (csvFile.value === null) {
-    info.value = "Please select an airfoil data file";
-    return;
-  }
+
+  console.log("Compute");
+
   if(v_inf.value === 0) {
     info.value = "Please enter a freestream velocity";
     return;
   }
-  var reader = new FileReader();
-  var data = [];
-  reader.onload = function (e) {
-    var contents = e.target.result;
-    var lines = contents.split("\n");
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i].split(",");
-      // to remove the last \r
-      line[1] = line[1].replace("\r", "");
-      // to float
-      line[0] = parseFloat(line[0]);
-      line[1] = parseFloat(line[1]);
-      data.push(line);
-    }
 
-    loading.value = true;
+  loading.value = true;
+   
     axios
       .post("http://localhost:5000/compute", {
-        data: data,
+        airfoilData: JSON.parse(JSON.stringify(airfoilData.value.datasets[0].data)),
         v_inf: v_inf.value,
         aoa: aoa.value,
       })
@@ -54,26 +35,13 @@ const compute = () => {
         info.value = res.data.text;
         loading.value = false;
 
-        // update graphs store
-        const graphsStore = useGraphsStore();
-        graphsStore.panelGeometry.data = res.data.panel_geometry.data;
-        graphsStore.panelGeometry.fillData = res.data.panel_geometry.fillData;
-        graphsStore.panelGeometry.img = res.data.panel_geometry.pic;
-        graphsStore.geom_pts.data = res.data.geom_pts.data;
-        graphsStore.geom_pts.img = res.data.geom_pts.pic;
-        graphsStore.control_pts.data = res.data.control_pts.data;
-        graphsStore.control_pts.img = res.data.control_pts.pic;
-        graphsStore.pressure.data = res.data.pressure.data;
-        graphsStore.pressure.img = res.data.pressure.pic;
       })
       .catch((err) => {
         loading.value = false;
         console.log(err);
         info.value = "Error: " + err;
       });
-  };
 
-  reader.readAsText(csvFile.value[0]);
 };
 
 </script>
@@ -93,12 +61,7 @@ const compute = () => {
           label="Angle of Attack (deg)"
           type="number"
         ></v-text-field>
-        <v-file-input
-          v-model="csvFile"
-          label="Airfoil Data File"
-          accept=".csv,.dat"
-        ></v-file-input>
-        <v-btn @click="submit" color="primary">Generate</v-btn>
+        <v-btn @click="compute" color="primary">Generate</v-btn>
         <!-- seperator bar -->
         <v-divider></v-divider>
         <!-- info panel -->
