@@ -38,21 +38,24 @@ airfoilData.value = {
             {x: 0.975377, y: -0.002425},
             {x: 1.000000, y:  0.000000} ]}]};
 
-var graphOptions = {
+var config = {
   aspectRatio: 8,
   pointRadius: 6,
   showLine: true,
   pointBackgroundColor: 'rgba(1, 0, 0, 1)',
   autosize: true,
   responsive: true,
-  
+  scales: {
+    y: {
+      min: -0.13,
+      max: 0.13
+    }
+  },
   xaxis: {
       scaleanchor: "y",
       scaleratio: 1,
-      fixedrange: true,
   },
   yaxis: {
-      fixedrange: true,
   },
   plugins: {
     dragData: {
@@ -120,10 +123,8 @@ function submit(){
 
         <h2>Airfoil Plot</h2>
 
-        <Scatter :data="airfoilData.value" :options="graphOptions"/>
+        <Scatter :data="airfoilData.value" :options="config"/>
 
-        {{ airfoilData }}
-        <br>
         <v-btn @click="submit" color="primary">Change</v-btn>
         
       </v-card>
