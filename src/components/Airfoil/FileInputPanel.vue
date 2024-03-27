@@ -4,13 +4,25 @@ import axios from "axios";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 
 
-const csvFile = ref(null);
+const inputFile = ref(null);
 const airfoilData = useAirfoilDataStore().airfoilData;
 
 const submit = () => {
-  console.log("File Input SUBMIT");
-  if (csvFile.value === null) {
+  
+  if (inputFile.value === null) {
+    // TODO Warn user that a file must be selected
     console.log("No file selected");
+    return;
+  }
+
+  var fileName = inputFile.value[0].name.split('.');
+  //var name = fileName[0]; // TODO Do something with name
+  var extension = fileName[1];
+
+  // TODO Implement other file types
+  if(extension != "csv" && extension != "dat"){
+    // TODO Warn user that the file must be a .csv or .dat file
+    console.log("Invalid file type");
     return;
   }
 
@@ -45,7 +57,7 @@ const submit = () => {
       });
   };
 
-  reader.readAsText(csvFile.value[0]);
+  reader.readAsText(inputFile.value[0]);
 };
 
 defineExpose({ submit });
@@ -58,7 +70,7 @@ defineExpose({ submit });
       <v-card variant="tonal">
         <h1>Input Panel</h1>
         <v-file-input
-          v-model="csvFile"
+          v-model="inputFile"
           label="Airfoil Data File"
           accept=".csv,.dat"
         ></v-file-input>
