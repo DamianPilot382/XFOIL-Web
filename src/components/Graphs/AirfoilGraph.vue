@@ -3,6 +3,8 @@ import { Chart, PointElement, LineElement, LinearScale } from 'chart.js';
 import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
+import { convertChartToJson, convertJsonToChart } from "../../utils/AirfoilDataConvert.js";
+import { ref } from 'vue';
 
 var airfoilData = useAirfoilDataStore().airfoilData;
 
@@ -62,6 +64,17 @@ var config = {
 
 Chart.register(LinearScale, PointElement, LineElement, dragData);
 
+var converted = ref({});
+function convertToJson(){
+  converted.value = convertChartToJson(airfoilData.value)
+  console.log(converted.value);
+}
+
+function convertToChart(){
+  airfoilData.value = convertJsonToChart(converted.value);
+  console.log(convertJsonToChart(converted.value));
+}
+
 </script>
   
 <template>
@@ -73,6 +86,9 @@ Chart.register(LinearScale, PointElement, LineElement, dragData);
 
         <Scatter :data="airfoilData.value" :options="config"/>
         
+        <v-btn @click="convertToJson">JSON</v-btn>
+        <v-btn @click="convertToChart">Chart</v-btn>
+
       </v-card>
     </v-responsive>
   </v-container>
