@@ -14,6 +14,8 @@ var inputMethodSelected = shallowRef(null);
 // Whether the submit button is enabled
 var submitBtnEnabled = ref(false);
 
+var showGraph = ref(true); // TODO Implement hiding when not populated
+
 // Airfoil graph component
 var airfoilGraph = ref(null);
 
@@ -79,18 +81,20 @@ const submit = () => {
           </v-row>
 
         <br>
+        <br>
         <v-divider></v-divider>
         <br>
 
         <!-- Submit Button -->
         <v-btn @click="submit" color="primary" v-show="submitBtnEnabled">Generate</v-btn>
+
       </v-card>
 
       <br>
       
       <!-- === Airfoil Graph === -->
       <v-card>
-        <AirfoilGraph ref="airfoilGraph"/>
+        <AirfoilGraph v-show="showGraph" ref="airfoilGraph"/>
       </v-card>
 
     </v-responsive>

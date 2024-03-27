@@ -4,6 +4,8 @@ import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 import { airfoilTestData } from "../../utils/airfoilTestData.js";
+import axios from "axios";
+
 
 var airfoilData = useAirfoilDataStore().airfoilData;
 
@@ -39,6 +41,31 @@ var config = {
   }
 };
 
+const downloadAsCSV = () => {
+
+  console.log("Downloading...")
+
+  axios
+    .post("http://localhost:5000/downloadAsCSV", {
+      airfoilData: airfoilData.value
+    })
+    .then((res) => {
+
+      const csv = res.data;
+      const link = document.createElement("a");
+      link.target = "_blank";
+      link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+      link.download = "airfoil.csv"; // TODO Come up with a better name
+      link.click();
+
+
+    })
+    .catch((err) => {
+      console.log(err);
+      info.value = "Error: " + err;
+    });
+};
+
 Chart.register(LinearScale, PointElement, LineElement, dragData);
 
 </script>
@@ -52,6 +79,9 @@ Chart.register(LinearScale, PointElement, LineElement, dragData);
 
         <Scatter :data="airfoilData.value" :options="config"/>
 
+        <br>
+
+        <v-btn @click="downloadAsCSV" color="primary">Download as CSV</v-btn>
       </v-card>
     </v-responsive>
   </v-container>

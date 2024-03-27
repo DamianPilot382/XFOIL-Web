@@ -26,4 +26,12 @@ function convertJsonToChart(json){
     return ret;
 }
 
-export { convertChartToJson, convertJsonToChart };
+function addChartHeaders(airfoilData){
+    return {
+        datasets: [{
+            data: airfoilData
+        }]
+    };
+}
+
+export { convertChartToJson, convertJsonToChart, addChartHeaders };

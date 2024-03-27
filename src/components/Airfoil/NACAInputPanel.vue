@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
+import { addChartHeaders } from "../../utils/airfoilDataConvert.js";
 
 const airfoilData = useAirfoilDataStore().airfoilData;
 
@@ -35,13 +36,7 @@ const submit = () => {
     })
     .then((res) => {
 
-      const csv = res.data;
-      const link = document.createElement("a");
-      link.target = "_blank";
-      link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
-      link.download = getAirfoilName() + ".csv";
-      link.click();
-
+      airfoilData.value = addChartHeaders(res.data);
 
     })
     .catch((err) => {
