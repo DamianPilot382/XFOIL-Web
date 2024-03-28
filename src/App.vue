@@ -1,6 +1,6 @@
 <script setup>
 import AirfoilPanel from './components/Airfoil/AirfoilPanel.vue';
-import InputPanel from './components/Solver/InputPanel.vue';
+import SolverPanel from './components/Solver/SolverPanel.vue';
 import { reactive, provide, inject } from 'vue';
 import { useAirfoilDataStore } from './stores/airfoilData.js';
 
@@ -34,15 +34,14 @@ const airfoilData = useAirfoilDataStore().airfoilData;
         </v-row>
       </v-container>
 
-      <!-- === Airfoil Panel Section === -->
+      <!-- === solver Panel Section === -->
       <v-container fluid>
         <v-row>
           <v-col cols="12">
-            <InputPanel />
+            <SolverPanel />
           </v-col>
         </v-row>
       </v-container>
-
 
     </v-main>
 

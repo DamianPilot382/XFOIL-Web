@@ -3,7 +3,7 @@
 import FileInputPanel from "./FileInputPanel.vue";
 import NACAInputPanel from "./NACAInputPanel.vue";
 import { shallowRef, ref } from "vue";
-import AirfoilGraph from "../Graphs/AirfoilGraph.vue";
+import AirfoilGraph from "./AirfoilGraph.vue";
 
 // Input type currently being used
 var inputPanel = ref(null);
@@ -68,7 +68,7 @@ const submit = () => {
               <!-- Select Input Method -->
               <v-select
                 label="Select Input Type"
-                :items="['Input File', 'NACA 4 Series Generator', 'From Scratch']"
+                :items="['Input File', 'NACA 4 Series Generator']"
                 variant="solo-filled"
                 @update:model-value="getSelectionFromDropdown"
               ></v-select>
