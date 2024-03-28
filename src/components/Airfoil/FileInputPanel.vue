@@ -29,16 +29,23 @@ const submit = () => {
   var reader = new FileReader();
   var data = [];
   reader.onload = function (e) {
-    var contents = e.target.result;
-    var lines = contents.split("\n");
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i].split(",");
-      // to remove the last \r
-      line[1] = line[1].replace("\r", "");
-      // to float
-      line[0] = parseFloat(line[0]);
-      line[1] = parseFloat(line[1]);
-      data.push(line);
+    
+    if(extension == "csv") {
+
+      var contents = e.target.result;
+      var lines = contents.split("\n");
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].split(",");
+        // to remove the last \r
+        line[1] = line[1].replace("\r", "");
+        // to float
+        line[0] = parseFloat(line[0]);
+        line[1] = parseFloat(line[1]);
+        data.push(line);
+      }
+      
+    }else if(extension == "dat"){
+      // TODO
     }
 
     console.log(data);
