@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
+import { addChartHeaders } from "../../utils/airfoilDataConvert.js";
 
 
 const inputFile = ref(null);
@@ -29,37 +30,26 @@ const submit = () => {
   var reader = new FileReader();
   var data = [];
   reader.onload = function (e) {
-    
-    if(extension == "csv") {
 
-      var contents = e.target.result;
-      var lines = contents.split("\n");
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].split(",");
-        // to remove the last \r
-        line[1] = line[1].replace("\r", "");
-        // to float
-        line[0] = parseFloat(line[0]);
-        line[1] = parseFloat(line[1]);
-        data.push(line);
+    const regex = /^(-?\d*\.*\d*)[\s,](-?\d*\.*\d*)\s*$/;
+
+    var contents = e.target.result;
+    var lines = contents.split("\n");
+    for (var i = 0; i < lines.length; i++) {
+
+      const regexMatch = regex.exec(lines[i].trim());
+
+      if(regexMatch == null){
+        console.log("invalid: " + lines[i]);
+        continue;
       }
-      
-    }else if(extension == "dat"){
-      // TODO
+
+      data.push({x: parseFloat(regexMatch[1]), y: parseFloat(regexMatch[2])});
+
     }
 
-    console.log(data);
+    airfoilData.value = addChartHeaders(data);
 
-    axios
-      .post("http://localhost:5000/InputFile", {
-        data: data,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   reader.readAsText(inputFile.value[0]);
