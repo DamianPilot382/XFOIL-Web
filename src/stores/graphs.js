@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import { ref } from 'vue'
 
 export const useGraphsStore = defineStore('graphs', {
     state: () => ({
@@ -6,7 +7,8 @@ export const useGraphsStore = defineStore('graphs', {
         geom_pts: { img: null, data: null },
         control_pts: { img: null, data: null },
         pressure: { img: null, data: null },
-        mode: 'img'
+        mode: 'img',
+        renderImgs: ref(false),
     }),
 
 })

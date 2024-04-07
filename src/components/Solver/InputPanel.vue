@@ -10,12 +10,10 @@ const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
 
 const airfoilData = useAirfoilDataStore().airfoilData;
+
 const graphsStore = useGraphsStore();
 
 const compute = () => {
-
-  console.log("Compute");
-  console.log(JSON.stringify(airfoilData.value.datasets[0].data));
 
   if(v_inf.value === 0) {
     info.value = "Please enter a freestream velocity";
@@ -32,8 +30,6 @@ const compute = () => {
       })
       .then((res) => {
 
-        console.log(res);
-
         info.value = res.data.text;
         loading.value = false;
 
@@ -47,9 +43,12 @@ const compute = () => {
         graphsStore.pressure.data = res.data.pressure.data;
         graphsStore.pressure.img = res.data.pressure.pic;
 
-        console.log(graphsStore);
+        console.log(graphsStore.renderImgs);
 
-        console.log("done compute");
+        graphsStore.renderImgs = true;
+
+        console.log(graphsStore.renderImgs);
+
       })
       .catch((err) => {
         loading.value = false;
