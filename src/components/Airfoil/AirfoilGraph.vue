@@ -43,27 +43,17 @@ var config = {
 
 const downloadAsCSV = () => {
 
-  console.log("Downloading...")
+  let csvContent = "data:text/csv;charset=utf-8,";
+  csvContent +=airfoilData.value.datasets[0].data.map(point => point.x + "," + point.y).join("\r\n");
 
-  axios
-    .post("http://localhost:5000/downloadAsCSV", {
-      airfoilData: airfoilData.value
-    })
-    .then((res) => {
+  csvContent = encodeURI(csvContent);
 
-      const csv = res.data;
-      const link = document.createElement("a");
-      link.target = "_blank";
-      link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
-      link.download = "airfoil.csv"; // TODO Come up with a better name
-      link.click();
+  const link = document.createElement("a");
 
+  link.setAttribute("href", csvContent);
+  link.setAttribute("download", "airfoil.csv"); // TODO Come up with a better name
+  link.click();
 
-    })
-    .catch((err) => {
-      console.log(err);
-      info.value = "Error: " + err;
-    });
 };
 
 Chart.register(LinearScale, PointElement, LineElement, dragData);
