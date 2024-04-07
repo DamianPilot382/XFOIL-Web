@@ -2,17 +2,20 @@
 import { ref, computed } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
+import { useGraphsStore } from "../../stores/graphs";
 
-const v_inf = ref(0);
-const aoa = ref(0);
+const v_inf = ref(5);
+const aoa = ref(1);
 const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
 
 const airfoilData = useAirfoilDataStore().airfoilData;
+const graphsStore = useGraphsStore();
 
 const compute = () => {
 
   console.log("Compute");
+  console.log(JSON.stringify(airfoilData.value.datasets[0].data));
 
   if(v_inf.value === 0) {
     info.value = "Please enter a freestream velocity";
@@ -23,15 +26,30 @@ const compute = () => {
    
     axios
       .post("http://localhost:5000/compute", {
-        airfoilData: JSON.parse(JSON.stringify(airfoilData.value.datasets[0].data)),
+        airfoilData: JSON.stringify(airfoilData.value.datasets[0].data),
         v_inf: v_inf.value,
         aoa: aoa.value,
       })
       .then((res) => {
+
         console.log(res);
+
         info.value = res.data.text;
         loading.value = false;
 
+        graphsStore.panelGeometry.data = res.data.panel_geometry.data;
+        graphsStore.panelGeometry.fillData = res.data.panel_geometry.fillData;
+        graphsStore.panelGeometry.img = res.data.panel_geometry.pic;
+        graphsStore.geom_pts.data = res.data.geom_pts.data;
+        graphsStore.geom_pts.img = res.data.geom_pts.pic;
+        graphsStore.control_pts.data = res.data.control_pts.data;
+        graphsStore.control_pts.img = res.data.control_pts.pic;
+        graphsStore.pressure.data = res.data.pressure.data;
+        graphsStore.pressure.img = res.data.pressure.pic;
+
+        console.log(graphsStore);
+
+        console.log("done compute");
       })
       .catch((err) => {
         loading.value = false;
