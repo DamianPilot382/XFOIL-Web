@@ -13,14 +13,16 @@ const airfoilData = useAirfoilDataStore().airfoilData;
 
 </script>
 
-<template>
+<template style="background-color: red">
 
   <v-app>
     
     <!-- === Top Navbar === -->
-    <v-app-bar app color="grey" dark>
-      <v-img alt="XFoil" contain src="./assets/logo.png" max-height="3rem"></v-img>
-    </v-app-bar>
+    <v-app-bar app color="grey" class="align-center text-center">
+      <v-container fluid>
+        <h1 class="header-logo">Aerospace Helper</h1>
+      </v-container>
+      </v-app-bar>
 
     <!-- === Main Content === -->
     <v-main>
@@ -46,10 +48,27 @@ const airfoilData = useAirfoilDataStore().airfoilData;
     </v-main>
 
   </v-app>
+
 </template>
 
 <style>
   .v-card {
     padding: 1rem;
   }
+
+  .header-logo {
+    /* text-align: center; */
+    font-family: Futura;
+    font-size: 3rem;
+    background: linear-gradient(to right, #1f05a2, #03ba1e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @font-face {
+    font-family: Futura;
+    src: url(./assets/fonts/futura/FUTURA76BOLDITALIC.TTF);
+  }
+
 </style>

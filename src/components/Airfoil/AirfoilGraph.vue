@@ -61,7 +61,7 @@ Chart.register(LinearScale, PointElement, LineElement, dragData);
 </script>
   
 <template>
-  <v-container class="fill-height">
+  <v-container fill-height>
     <v-responsive class="align-center text-center fill-height">
       <v-card variant="tonal">
 

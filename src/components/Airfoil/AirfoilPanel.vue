@@ -93,7 +93,7 @@ const submit = () => {
       <br>
       
       <!-- === Airfoil Graph === -->
-      <v-card>
+      <v-card variant="tonal">
         <AirfoilGraph v-show="showGraph" ref="airfoilGraph"/>
       </v-card>
 
