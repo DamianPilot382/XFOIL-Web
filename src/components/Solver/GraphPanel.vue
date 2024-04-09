@@ -30,7 +30,7 @@ const imgs = computed(() => {
           <h1>Graphs</h1>
 
           <v-row>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="12">
               <v-card>
                 <v-card-title>Panel Geometry</v-card-title>
                 <v-card-text>
@@ -38,7 +38,7 @@ const imgs = computed(() => {
                 </v-card-text>
               </v-card>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="12">
               <v-card>
                 <v-card-title>Geometry Points</v-card-title>
                 <v-card-text>
@@ -48,7 +48,7 @@ const imgs = computed(() => {
             </v-col>
           </v-row>
           <v-row>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="12">
             <v-card>
               <v-card-title>Cp vectors at control points</v-card-title>
               <v-card-text>
@@ -56,7 +56,7 @@ const imgs = computed(() => {
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="12">
             <v-card>
               <v-card-title>Pressure Coefficient</v-card-title>
               <v-card-text>
