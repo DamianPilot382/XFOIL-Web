@@ -3,15 +3,17 @@ import { ref, computed } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
 import { useGraphsStore } from "../../stores/graphs";
+import { useResultsGraphsStore } from "../../stores/resultsGraphs.js";
 
-const v_inf = ref(5);
-const aoa = ref(1);
+const v_inf = ref(1);
+const aoa = ref(5);
 const loading = ref(false);
 const info = ref("Enter parameters and click generate to begin");
 
 const airfoilData = useAirfoilDataStore().airfoilData;
 
 const graphsStore = useGraphsStore();
+const resultsGraphsStore = useResultsGraphsStore();
 
 const compute = () => {
 
@@ -30,9 +32,8 @@ const compute = () => {
       })
       .then((res) => {
 
-        info.value = res.data.text;
-        loading.value = false;
 
+        // Store Image Data
         graphsStore.panelGeometry.data = res.data.panel_geometry.data;
         graphsStore.panelGeometry.fillData = res.data.panel_geometry.fillData;
         graphsStore.panelGeometry.img = res.data.panel_geometry.pic;
@@ -43,11 +44,18 @@ const compute = () => {
         graphsStore.pressure.data = res.data.pressure.data;
         graphsStore.pressure.img = res.data.pressure.pic;
 
-        console.log(graphsStore.renderImgs);
+        //Store Graph Data
+        resultsGraphsStore.pressureCoeff = res.data.pressureCoeff;
+
+        console.log(resultsGraphsStore.pressureCoeff);
+
+
+
 
         graphsStore.renderImgs = true;
 
-        console.log(graphsStore.renderImgs);
+        info.value = res.data.text;
+        loading.value = false;
 
       })
       .catch((err) => {

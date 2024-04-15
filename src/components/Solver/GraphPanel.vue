@@ -1,6 +1,7 @@
 <script setup>
 import { useGraphsStore } from "../../stores/graphs.js";
 import { ref, computed } from "vue";
+import PressureCoeffGraph from "./Graphs/PressureCoeffGraph.vue";
 
 const graphsStore = useGraphsStore();
 
@@ -28,7 +29,7 @@ const imgs = computed(() => {
 
         <div>
           <h1>Graphs</h1>
-
+          <PressureCoeffGraph />
           <v-row>
             <v-col cols="12" md="12">
               <v-card>

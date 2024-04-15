@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useAirfoilDataStore } from "../../stores/airfoilData.js";
-import { addChartHeaders } from "../../utils/airfoilDataConvert.js";
+import { addChartHeaders } from "@/utils/airfoilDataConvert.js";
 
 
 const inputFile = ref(null);

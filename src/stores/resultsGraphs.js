@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useAirfoilDataStore = defineStore('airfoilData', {
+export const useResultsGraphsStore = defineStore('resultsGraphs', {
     state: () => ({
-        airfoilData: ref({})
+        pressureCoeff: ref({})
     }),
 
 })
