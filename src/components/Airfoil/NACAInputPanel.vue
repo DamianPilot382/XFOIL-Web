@@ -28,7 +28,7 @@ function getAirfoilName(){
 const submit = () => {
 
   axios
-    .post("http://localhost:5000/NACA4Airfoil", {
+    .post("https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/NACA4Airfoil", {
       maxCamber: maxCamber.value,
       maxCamberLoc: maxCamberLoc.value,
       maxThickness: maxThickness.value,
