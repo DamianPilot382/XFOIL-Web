@@ -2,9 +2,9 @@
 import { Chart, PointElement, LineElement, LinearScale } from 'chart.js';
 import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
-import { useResultsGraphsStore } from "../../../stores/resultsGraphs.js";
-import { useAirfoilDataStore } from "../../../stores/airfoilData.js";
-import { airfoilTestData } from "../../../utils/airfoilTestData.js";
+import { useResultsGraphsStore } from "@/stores/resultsGraphs.js";
+import { useAirfoilDataStore } from "@/stores/airfoilData.js";
+import { airfoilTestData } from "@/utils/airfoilTestData.js";
 
 
 var airfoilData = useAirfoilDataStore().airfoilData;
