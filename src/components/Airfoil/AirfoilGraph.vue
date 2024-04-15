@@ -3,7 +3,7 @@ import { Chart, PointElement, LineElement, LinearScale } from 'chart.js';
 import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
 import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
-import { airfoilTestData } from "/src/utils/airfoilTestData.js";
+import { airfoilTestData } from "/public/utils/airfoilTestData.js";
 import axios from "axios";
 
 
