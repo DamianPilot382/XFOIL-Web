@@ -8,6 +8,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "./runtimeConfig/*": [
+        "./runtimeConfig.browser/*"
       ]
     },
     "lib": [
