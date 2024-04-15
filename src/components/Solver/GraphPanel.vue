@@ -1,5 +1,5 @@
 <script setup>
-import { useGraphsStore } from "@/stores/graphs.js";
+import { useGraphsStore } from "/src/stores/graphs.js";
 import { ref, computed } from "vue";
 import PressureCoeffGraph from "./Graphs/PressureCoeffGraph.vue";
 

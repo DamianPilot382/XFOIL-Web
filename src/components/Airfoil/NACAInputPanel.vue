@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
-import { useAirfoilDataStore } from "@/stores/airfoilData.js";
-import { addChartHeaders } from "@/utils/airfoilDataConvert.js";
+import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
+import { addChartHeaders } from "/src/utils/airfoilDataConvert.js";
 
 const airfoilData = useAirfoilDataStore().airfoilData;
 

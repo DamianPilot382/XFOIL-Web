@@ -1,9 +1,9 @@
 <script setup>
 import { ref, computed } from "vue";
 import axios from "axios";
-import { useAirfoilDataStore } from "@/stores/airfoilData.js";
-import { useGraphsStore } from "@/stores/graphs";
-import { useResultsGraphsStore } from "@/stores/resultsGraphs.js";
+import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
+import { useGraphsStore } from "/src/stores/graphs";
+import { useResultsGraphsStore } from "/src/stores/resultsGraphs.js";
 
 const v_inf = ref(1);
 const aoa = ref(5);
