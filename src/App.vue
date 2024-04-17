@@ -68,7 +68,7 @@ const airfoilData = useAirfoilDataStore().airfoilData;
 
   @font-face {
     font-family: Futura;
-    src: url('/public/assets/fonts/futura/FUTURA76BOLDITALIC.TTF');
+    src: url('/assets/fonts/futura/FUTURA76BOLDITALIC.TTF');
   }
 
 </style>
