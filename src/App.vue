@@ -20,7 +20,7 @@ const airfoilData = useAirfoilDataStore().airfoilData;
     <!-- === Top Navbar === -->
     <v-app-bar app color="grey" class="align-center text-center">
       <v-container fluid>
-        <h1 class="header-logo">Aerospace Helper</h1>
+        <h1 class="header-logo">Airfoils Online</h1>
       </v-container>
       </v-app-bar>
 
@@ -68,7 +68,7 @@ const airfoilData = useAirfoilDataStore().airfoilData;
 
   @font-face {
     font-family: Futura;
-    src: url(./assets/fonts/futura/FUTURA76BOLDITALIC.TTF);
+    src: url(/public/assets/fonts/futura/FUTURA76BOLDITALIC.TTF);
   }
 
 </style>

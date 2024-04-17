@@ -3,16 +3,17 @@ import { ref } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
 import { addChartHeaders } from "/public/utils/airfoilDataConvert.js";
+import { parse } from "vue/compiler-sfc";
 
 const airfoilData = useAirfoilDataStore().airfoilData;
 
 // NACA 4-Series Airfoil Inputs
-const maxCamber = ref(0);
-const maxCamberLoc = ref(0);
-const maxThickness = ref(0);
+const maxCamber = ref(2);
+const maxCamberLoc = ref(4);
+const maxThickness = ref(12);
 
 // Number of points to generate
-const numPoints = ref(0);
+const numPoints = ref(20);
 
 function getAirfoilName(){
   var airfoilName = "NACA "+maxCamber.value+maxCamberLoc.value;
@@ -27,12 +28,18 @@ function getAirfoilName(){
 
 const submit = () => {
 
+  if(isNaN(parseInt(maxCamber.value)) || isNaN(parseInt(maxCamberLoc.value)) 
+  || isNaN(parseInt(maxThickness.value)) || isNaN(parseInt(numPoints.value))){
+    alert("Error: Invalid input");
+    return;
+  }
+
   axios
     .post("https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/NACA4Airfoil", {
-      maxCamber: maxCamber.value,
-      maxCamberLoc: maxCamberLoc.value,
-      maxThickness: maxThickness.value,
-      numPoints: numPoints.value,
+      maxCamber: parseInt(maxCamber.value),
+      maxCamberLoc: parseInt(maxCamberLoc.value),
+      maxThickness: parseInt(maxThickness.value),
+      numPoints: parseInt(numPoints.value),
     })
     .then((res) => {
 

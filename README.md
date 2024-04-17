@@ -1,7 +1,7 @@
 # XFOIL-Web
 
 <p align="center">
-<img src="src/assets/logo.png" alt="drawing" width="200">
+<img src="public/assets/logo.png" alt="drawing" width="200">
 </p>
 
 
