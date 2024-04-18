@@ -74,10 +74,10 @@ defineExpose({ submit });
         <v-row>
           <v-col cols="3"></v-col>
           <v-col cols="3">
-            <v-btn color="primary" href="/public/sample_files/n0012.csv" target="_blank">CSV</v-btn>
+            <v-btn color="primary" href="/sample_files/n0012.csv" target="_blank">CSV</v-btn>
           </v-col>
           <v-col cols="3">
-            <v-btn color="primary" href="/public/sample_files/n0012.dat" target="_blank">DAT</v-btn>
+            <v-btn color="primary" href="/sample_files/n0012.dat" target="_blank">DAT</v-btn>
           </v-col>
           <v-col cols="3"></v-col>
         </v-row>

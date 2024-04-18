@@ -25,9 +25,10 @@ const compute = () => {
   loading.value = true;
    
     axios
-      .post("http://localhost:5000/compute", {
+      .post("https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/Solver", {
+
         airfoilData: JSON.stringify(airfoilData.value.datasets[0].data),
-        v_inf: v_inf.value,
+        vinf: v_inf.value,
         aoa: aoa.value,
       })
       .then((res) => {
