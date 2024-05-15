@@ -3,7 +3,6 @@ import { ref } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
 import { addChartHeaders } from "/public/utils/airfoilDataConvert.js";
-import { parse } from "vue/compiler-sfc";
 
 const airfoilData = useAirfoilDataStore().airfoilData;
 
@@ -26,7 +25,7 @@ function getAirfoilName(){
 
 }
 
-const submit = () => {
+async function submit() {
 
   if(isNaN(parseInt(maxCamber.value)) || isNaN(parseInt(maxCamberLoc.value)) 
   || isNaN(parseInt(maxThickness.value)) || isNaN(parseInt(numPoints.value))){
@@ -34,8 +33,12 @@ const submit = () => {
     return;
   }
 
-  axios
-    .post("https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/NACA4Airfoil", {
+  // PROD OR DEV LINKS
+  var requestURL = "https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/NACA4Airfoil";
+  // var requestURL = "http://127.0.0.1:3000/NACA4Airfoil";
+
+  await axios
+    .post(requestURL, {
       maxCamber: parseInt(maxCamber.value),
       maxCamberLoc: parseInt(maxCamberLoc.value),
       maxThickness: parseInt(maxThickness.value),

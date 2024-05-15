@@ -19,6 +19,9 @@ var showGraph = ref(true); // TODO Implement hiding when not populated
 // Airfoil graph component
 var airfoilGraph = ref(null);
 
+//Loading wheel after generate button is clicked
+var loading = ref(false);
+
 // Get the selected input method from the dropdown
 const getSelectionFromDropdown = (selection) => {
 
@@ -46,9 +49,19 @@ const getSelectionFromDropdown = (selection) => {
 };
 
 // Submit the Airfoil to Server
-const submit = () => {
+async function submit() {
+
+  // Disable submit button and enable loading wheel
+  submitBtnEnabled.value = false;
+  loading.value = true;
+
   // Call the submit button for the selected input method
-  inputPanel.value.submit();
+  await inputPanel.value.submit();
+
+  // Enable submit button and Disable loading wheel
+  submitBtnEnabled.value = true;
+  loading.value = false;
+
 };
 
 </script>
@@ -87,6 +100,7 @@ const submit = () => {
 
         <!-- Submit Button -->
         <v-btn @click="submit" color="primary" v-show="submitBtnEnabled">Generate</v-btn>
+        <v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
 
       </v-card>
 

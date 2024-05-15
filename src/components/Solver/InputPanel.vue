@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
 import { useGraphsStore } from "/src/stores/graphs";
@@ -23,9 +23,13 @@ const compute = () => {
   }
 
   loading.value = true;
+
+  // PROD OR DEV LINKS
+  var requestURL = "https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/Solver";
+  // var requestURL = "http://127.0.0.1:3000/Solver";
    
     axios
-      .post("https://1cstgscusd.execute-api.us-west-1.amazonaws.com/Prod/Solver", {
+      .post(requestURL, {
 
         airfoilData: JSON.stringify(airfoilData.value.datasets[0].data),
         vinf: v_inf.value,
@@ -48,14 +52,14 @@ const compute = () => {
         //Store Graph Data
         resultsGraphsStore.pressureCoeff = res.data.pressureCoeff;
 
-        console.log(resultsGraphsStore.pressureCoeff);
-
-
-
+        resultsGraphsStore.Cl_SPVP = res.data.Cl_SPVP;
+        resultsGraphsStore.Cl_KJ = res.data.Cl_KJ;
+        resultsGraphsStore.Cm_SPVP = res.data.Cm_SPVP;
 
         graphsStore.renderImgs = true;
 
-        info.value = res.data.text;
+        // info.value = res.data.text;
+        info.value = "Solution Complete";
         loading.value = false;
 
       })
@@ -84,7 +88,7 @@ const compute = () => {
           label="Angle of Attack (deg)"
           type="number"
         ></v-text-field>
-        <v-btn @click="compute" color="primary">Generate</v-btn>
+        <v-btn @click="compute" color="primary" v-if="!loading">Generate</v-btn>
         <!-- seperator bar -->
         <v-divider></v-divider>
         <!-- info panel -->

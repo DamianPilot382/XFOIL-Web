@@ -47,6 +47,14 @@ const airfoilData = useAirfoilDataStore().airfoilData;
 
     </v-main>
 
+    <v-footer color="grey" class="align-center text-center">
+      <v-container fluid>
+        <h3>Made by Damian Ugalde</h3>
+        <h4>Cal Poly Pomona</h4>
+        <h5>Version 0.1.2</h5>
+      </v-container>
+    </v-footer>
+
   </v-app>
 
 </template>

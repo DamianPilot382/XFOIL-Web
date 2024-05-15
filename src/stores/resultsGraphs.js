@@ -3,7 +3,10 @@ import { ref } from 'vue'
 
 export const useResultsGraphsStore = defineStore('resultsGraphs', {
     state: () => ({
-        pressureCoeff: ref({})
+        pressureCoeff: ref({}),
+        Cl_SPVP: ref(0),
+        Cl_KJ: ref(0),
+        Cm_SPVP : ref(0)
     }),
 
 })

@@ -4,7 +4,6 @@ import dragData from 'chartjs-plugin-dragdata';
 import { Scatter } from 'vue-chartjs';
 import { useAirfoilDataStore } from "/src/stores/airfoilData.js";
 import { airfoilTestData } from "/public/utils/airfoilTestData.js";
-import axios from "axios";
 
 
 var airfoilData = useAirfoilDataStore().airfoilData;

@@ -7,7 +7,7 @@ import { addChartHeaders } from "/public/utils/airfoilDataConvert.js";
 const inputFile = ref(null);
 const airfoilData = useAirfoilDataStore().airfoilData;
 
-const submit = () => {
+async function submit(){
   
   if (inputFile.value === null) {
     // TODO Warn user that a file must be selected
